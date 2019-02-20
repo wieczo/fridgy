@@ -1,4 +1,4 @@
-import Vue from 'vue'
+// import Vue from 'vue'
 import axios from 'axios'
 
 const client = axios.create({
@@ -9,31 +9,46 @@ const client = axios.create({
 export default {
   async execute (method, resource, data) {
     // inject the accessToken for each request
-    let accessToken = await Vue.prototype.$auth.getAccessToken()
+    // let accessToken = await Vue.prototype.$auth.getAccessToken()
     return client({
       method,
       url: resource,
-      data,
-      headers: {
-        Authorization: `Bearer ${accessToken}`
-      }
+      data
+      // headers: {
+      //   Authorization: `Bearer ${accessToken}`
+      // }
     }).then(req => {
       return req.data
     })
   },
-  getPosts () {
-    return this.execute('get', '/posts')
+  getUsers () {
+    return this.execute('get', '/users')
   },
-  getPost (id) {
-    return this.execute('get', `/posts/${id}`)
+  getUser (id) {
+    return this.execute('get', `/users/${id}`)
   },
-  createPost (data) {
-    return this.execute('post', '/posts', data)
+  createUser (data) {
+    return this.execute('post', '/users', data)
   },
-  updatePost (id, data) {
-    return this.execute('put', `/posts/${id}`, data)
+  updateUser (id, data) {
+    return this.execute('put', `/users/${id}`, data)
   },
-  deletePost (id) {
-    return this.execute('delete', `/posts/${id}`)
+  deleteUser (id) {
+    return this.execute('delete', `/users/${id}`)
+  },
+  getProducts () {
+    return this.execute('get', '/products')
+  },
+  getProduct (id) {
+    return this.execute('get', `/products/${id}`)
+  },
+  createProduct (data) {
+    return this.execute('post', '/products', data)
+  },
+  updateProduct (id, data) {
+    return this.execute('put', `/products/${id}`, data)
+  },
+  deleteProduct (id) {
+    return this.execute('delete', `/products/${id}`)
   }
 }

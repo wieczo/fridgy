@@ -8,8 +8,9 @@
           <thead>
             <tr>
               <th>ID</th>
-              <th>Title</th>
-              <th>Updated At</th>
+              <th>Name</th>
+              <th>Kalorien pro Einheit</th>
+              <th>Preis</th>
               <th>&nbsp;</th>
             </tr>
           </thead>
@@ -17,10 +18,11 @@
             <tr v-for="product in products" :key="product.id">
               <td>{{ product.id }}</td>
               <td>{{ product.name }}</td>
-              <td>{{ product.updatedAt }}</td>
+              <td>{{ product.calories }}</td>
+              <td>{{ product.price }}</td>
               <td class="text-right">
-                <a href="#" @click.prevent="populateProductToEdit(product)">Edit</a> -
-                <a href="#" @click.prevent="deleteProduct(product.id)">Delete</a>
+                <a href="#" @click.prevent="populateProductToEdit(product)">Bearbeiten</a> -
+                <a href="#" @click.prevent="deleteProduct(product.id)">Löschen</a>
               </td>
             </tr>
           </tbody>
@@ -29,11 +31,17 @@
       <b-col lg="3">
         <b-card :title="(model.id ? 'Edit Product ID#' + model.id : 'New Product')">
           <form @submit.prevent="saveProduct">
-            <b-form-group label="Title">
-              <b-form-input type="text" v-model="model.title"></b-form-input>
+            <b-form-group label="Name">
+              <b-form-input type="text" v-model="model.name"></b-form-input>
             </b-form-group>
-            <b-form-group label="Body">
-              <b-form-textarea rows="4" v-model="model.body"></b-form-textarea>
+            <b-form-group label="Kalorien">
+              <b-form-input type="text" v-model="model.calories"></b-form-input>
+            </b-form-group>
+            <b-form-group label="Beschreibung">
+              <b-form-textarea rows="4" v-model="model.description"></b-form-textarea>
+            </b-form-group>
+            <b-form-group label="Preis">
+              <b-form-input type="decimal" v-model="model.price"></b-form-input>
             </b-form-group>
             <div>
               <b-btn type="submit" variant="success">Save Product</b-btn>

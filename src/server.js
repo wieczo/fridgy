@@ -14,11 +14,25 @@ let database = new Sequelize({
   storage: './test.sqlite'
 })
 
-// Define our Post model
+// Define our User model
+// name, email, rfid_key, karma, credit_debit
+let User = database.define('users', {
+  name: Sequelize.STRING,
+  email: Sequelize.STRING,
+  rfid_key: Sequelize.STRING,
+  karma: Sequelize.TINYINT,
+  credit_debit: Sequelize.DECIMAL
+})
+
+// Define our Product model
 // id, createdAt, and updatedAt are added by sequelize automatically
 let Product = database.define('products', {
   name: Sequelize.STRING,
-  description: Sequelize.TEXT
+  description: Sequelize.TEXT,
+  calories: Sequelize.TINYINT,
+  price: Sequelize.DECIMAL,
+  amount: Sequelize.TINYINT,
+  karma: Sequelize.TINYINT
 })
 
 // Initialize epilogue
@@ -28,9 +42,14 @@ epilogue.initialize({
 })
 
 // Create the dynamic REST resource for our Post model
-let userResource = epilogue.resource({
+let productResource = epilogue.resource({
   model: Product,
   endpoints: ['/products', '/products/:id']
+})
+
+let shopResource = epilogue.resource({
+  model: User,
+  endpoints: ['/users', '/users/:id']
 })
 
 // Resets the database and launches the express app on :8081
