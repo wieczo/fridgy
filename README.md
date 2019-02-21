@@ -28,6 +28,20 @@ Ablauf der GUI wäre:
 
 https://developer.okta.com/blog/2018/02/15/build-crud-app-vuejs-node
 
+## Link to Documentation of Tools
+
+- [VueJS // Frontend Framework](https://vuejs.org/v2/guide/)
+- [VueRouter // in-app REST routing](https://router.vuejs.org/)
+- [Epiloque // flexible REST endpoints and controllers from Sequelize](https://github.com/dchester/epilogue)
+- [Sequelize // Database ORM](http://docs.sequelizejs.com/)
+
+## Local Development
+
+- Fire up two terminal windows
+- install Node and npm
+- run `$ node src/server.js` first in one winows
+- run `$ npm run dev` in the second one
+
 ## Build Setup
 
 ``` bash
