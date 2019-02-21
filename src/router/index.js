@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from '@/components/Hello'
+import Main from '@/components/POS/Main'
 import Products from '@/components/Products'
 import Product from '@/components/Product'
 import Users from '@/components/Users'
@@ -11,8 +11,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Hello',
-      component: Hello
+      name: 'Main',
+      component: Main
     },
     {
       path: '/users',

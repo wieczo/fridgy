@@ -50,5 +50,8 @@ export default {
   },
   deleteProduct (id) {
     return this.execute('delete', `/products/${id}`)
+  },
+  createLedger (data) {
+    return this.execute('post', '/ledger', data)
   }
 }
