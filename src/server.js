@@ -41,6 +41,12 @@ epilogue.initialize({
   sequelize: database
 })
 
+app.post('/current_user/:rfid', function (req, res) {
+  console.log(req.params.rfid)
+  res.send('Successful POST request to the homepage')
+})
+
+
 // Create the dynamic REST resource for our Post model
 let productResource = epilogue.resource({
   model: Product,
