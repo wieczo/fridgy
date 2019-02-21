@@ -35,6 +35,14 @@ let Product = database.define('products', {
   karma: Sequelize.TINYINT
 })
 
+// Define our Transaction model
+let Ledger = database.define('ledger', {
+  amount: Sequelize.DECIMAL,
+  date: Sequelize.DATE
+})
+Ledger.belongsTo(User)
+Ledger.belongsTo(Product)
+
 // Initialize epilogue
 epilogue.initialize({
   app: app,
@@ -50,6 +58,11 @@ let productResource = epilogue.resource({
 let shopResource = epilogue.resource({
   model: User,
   endpoints: ['/users', '/users/:id']
+})
+
+let ledgerRessource = epilogue.resource({
+  model: Ledger,
+  endpoints: ['/ledger', '/ledger/:id']
 })
 
 // Resets the database and launches the express app on :8081
