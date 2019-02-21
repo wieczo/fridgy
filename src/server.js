@@ -52,7 +52,12 @@ epilogue.initialize({
 })
 
 app.get('/current_user', function (req, res) {
-  res.send("" + current_user)
+  User.findAll({where: {id: current_user}})
+    .then(function(user) {
+      if (user) {
+        res.json(user[0])
+      }
+    })
 })
 
 app.post('/current_user/:rfid', function (req, res) {
