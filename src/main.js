@@ -14,6 +14,11 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  data: {
+    currentUser: {
+      rfid_key: ''
+    }
+  },
   template: '<App/>',
   components: { App }
 })

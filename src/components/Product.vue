@@ -15,7 +15,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="product in products" :key="product.id">
+            <tr>
               <td>{{ product.id }}</td>
               <td>{{ product.name }}</td>
               <td>{{ product.calories }}</td>
@@ -59,7 +59,7 @@ export default {
   data () {
     return {
       loading: false,
-      products: [],
+      product: {},
       model: {}
     }
   },
@@ -69,8 +69,9 @@ export default {
   methods: {
     async refreshProducts () {
       this.loading = true
-      this.products = await api.getProducts()
+      this.product = await api.getProduct(1)
       this.loading = false
+      this.populateProductToEdit(this.product)
     },
     async populateProductToEdit (product) {
       this.model = Object.assign({}, product)
