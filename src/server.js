@@ -4,6 +4,8 @@ const bodyParser = require('body-parser')
 const Sequelize = require('sequelize')
 const epilogue = require('epilogue')
 
+var current_user = 0
+
 let app = express()
 app.use(cors())
 app.use(bodyParser.json())
@@ -41,8 +43,17 @@ epilogue.initialize({
   sequelize: database
 })
 
+app.get('/current_user', function (req, res) {
+  res.send("" + current_user)
+})
+
 app.post('/current_user/:rfid', function (req, res) {
-  console.log(req.params.rfid)
+  User.findAll({where: {rfid_key: req.params.rfid}})
+    .then(function(user) {
+      if (user) {
+        current_user = user[0].id
+      }
+    })
   res.send('Successful POST request to the homepage')
 })
 
@@ -61,7 +72,9 @@ let shopResource = epilogue.resource({
 database
   .sync({ force: true })
   .then(() => {
+    User.create({name: "David", rfid_key: 316023195878})
     app.listen(8081, () => {
       console.log('listening to port localhost:8081')
     })
   })
+
