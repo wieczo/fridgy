@@ -1,5 +1,9 @@
 <template>
   <div id="app">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <header>
+      <span><i class='fas fa-beer'></i> Fridge-Checkout</span>
+    </header>
     <main>
       <router-view></router-view>
     </main>
@@ -32,7 +36,7 @@ header {
   margin: 0;
   height: 56px;
   padding: 0 16px 0 24px;
-  background-color: #35495E;
+  background-color: #0087ea;
   color: #ffffff;
 }
 

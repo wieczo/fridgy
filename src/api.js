@@ -53,5 +53,11 @@ export default {
   },
   createLedger (data) {
     return this.execute('post', '/ledger', data)
+  },
+  getCurrenttUser () {
+    return this.execute('get', `/current_user`)
+  },
+  deleteCurrenttUser () {
+    return this.execute('delete', `/current_user`)
   }
 }

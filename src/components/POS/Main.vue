@@ -22,6 +22,7 @@
 import Login from '@/components/POS/Login'
 import Logout from '@/components/POS/Logout'
 import ProductList from '@/components/POS/ProductList'
+import api from '@/api'
 import { mapState, mapMutations, mapGetters } from 'vuex'
 
 export default {
@@ -33,6 +34,16 @@ export default {
   },
   created () {
     this.$store.commit('refreshProducts')
+    this.backgroundLogin = function () {
+      // GET http://localhost:8081/current_user
+      api.getCurrenttUser().then(function (currentUser) {
+        if (currentUser) {
+          this.$store.commit('login', currentUser)
+        }
+        this.timer = setTimeout(this.backgroundLogin.bind(this), 1000)
+      }.bind(this))
+    }
+    this.timer = setTimeout(this.backgroundLogin.bind(this), 1000)
   },
   computed: {
     ...mapState(['products', 'cart', 'login_state']),

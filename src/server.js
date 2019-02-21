@@ -70,6 +70,10 @@ app.post('/current_user/:rfid', function (req, res) {
   res.send('Successful POST request to the homepage')
 })
 
+app.delete('/current_user/', function (req, res) {
+  current_user = 0
+})
+
 // Create the dynamic REST resource for our Post model
 let productResource = epilogue.resource({
   model: Product,
