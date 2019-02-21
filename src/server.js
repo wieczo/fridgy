@@ -95,6 +95,7 @@ database
   .sync({ force: true })
   .then(() => {
     User.create({name: "David", rfid_key: 316023195878})
+    User.create({name: "Jens", rfid_key: 590504744560})
     app.listen(8081, () => {
       console.log('listening to port localhost:8081')
     })
