@@ -1,11 +1,15 @@
 <template>
+<transition name="fade">
   <div class="productItem" v-on:click='onClick({product: product, idx: idx})'>
     <h5 class="title">
       {{product.name}}
     </h5>
-    <span class="description">{{product.description}}</span>
-    <span class="price">{{product.price}}</span>
+    <span class="price">{{product.price.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })}}</span>
+    <div v-if="compact!='true'">
+      <span class="description">{{product.description}}</span>      
+    </div>
   </div>
+</transition>
 </template>
 
 <script>
@@ -15,7 +19,8 @@ export default {
   props: {
     idx: Number,
     product: Object,
-    onClick: Function
+    onClick: Function,
+    compact: false
   }
 }
 </script>
@@ -23,6 +28,28 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .productItem{
-    border: 1px solid red;
+    padding: 15px;
+    background: #FFF;
+    color: #555;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
+    margin: 10px 0px;
+    cursor: pointer;
+    position: relative;
+    border-radius: 3px;
   }
+
+  .productItem:active{
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
+
+  .price{
+    font-size: 20px;
+    font-weight: lighter;
+    float: right;
+    position: absolute; 
+    top: 10px;
+    right: 10px;
+  }
+
 </style>

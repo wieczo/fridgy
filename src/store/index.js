@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    current_user: {},
+    current_user: false,
     login_state: 'logged_out',
     products: [{name: 'Unloaded'}],
     cart: []
@@ -19,6 +19,7 @@ export default new Vuex.Store({
     logout () {
       api.deleteCurrenttUser()
       this.state.login_state = 'logged_out'
+      this.state.current_user = false
       this.state.cart = []
     },
     addToCart (context, payload) {

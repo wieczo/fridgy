@@ -1,11 +1,15 @@
 <template>
   <div>
-    <center>
-      <div><i class='fas fa-lock'></i></div>
-      BITTE EINLOGGEN<br>HALTE DEINEN RFID CHIP AN DEN READER</center>
+    <center>     
+      <div><i class='fas fa-user'></i></div>
+      <h2>Anmelden</h2>
+      <br>Halte Deinen RFID Chip an das Lesegerät oder wähle manuelle Anmeldung
+
       <div class='login'>
-       <a v-on:click="loginCallback()" href="#" >Anmelden</a>
+        <button v-on:click="loginCallback({id: 1, name: 'Daniel'})" href="#" >Alternative Anmeldung</button>
       </div>
+
+    </center>
   </div>
 </template>
 
@@ -25,9 +29,13 @@ export default {
     font-size: 60px;
     margin-top: 50px;
     margin-bottom: 30px;
+    background: rgb(0,0,0, 0.2);
+    color: white;
+    border-radius: 999px;
+    padding: 30px 35px;
   }
 
   .login {
-    margin-top: 300px;
+    margin-top: 100px;
   }
 </style>
