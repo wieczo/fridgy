@@ -7,8 +7,24 @@ const epilogue = require('epilogue')
 var current_user = 0
 
 let app = express()
-app.use(cors())
+
+var corsOptions = {
+  origin: function (origin, callback) {
+    callback(null, true)
+  }
+}
+
+app.use(cors(corsOptions))
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*")
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+  next()
+})
+
 app.use(bodyParser.json())
+
+
 
 // For ease of this tutorial, we are going to use SQLite to limit dependencies
 let database = new Sequelize({
