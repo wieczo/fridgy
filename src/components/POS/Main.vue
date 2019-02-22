@@ -96,15 +96,16 @@ a {
 }
 
 .total{
-  border-top: 2px solid white;
-  margin-top: 10px;
-  padding-top: 10px;
-  font-size: 24px;
+  margin-top: 20px;
+  padding-top: 15px;
+  font-size: 36px;
+  font-weight: lighter;
 }
 
 button{
   margin-top: 30px;
   background: rgba(0, 0, 0, 0.2);
+  background: #3FCA8C;
   font-size: 22px;
   font-weight: lighter;
   padding: 8px 15px ;
@@ -113,6 +114,7 @@ button{
   margin: auto;
   color: white;
   cursor: pointer;
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
 }
 
 button:active{
