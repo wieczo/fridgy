@@ -3,7 +3,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <header>
       <span class="time">{{currentTime}}</span>
-      <span class="time" v-if="current_user">
+      <span class="user" v-if="current_user">
+        <a v-on:click="logout()">Logout</a>
         <i class="fas fa-user"></i> {{current_user.name}}
       </span>
       <span><i class='fas fa-beer'></i> Fridge-Checkout</span>      
@@ -15,7 +16,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
   name: 'app',
@@ -29,6 +30,9 @@ export default {
   },
   computed: {
     ...mapState(['current_user'])
+  },
+  methods: {
+    ...mapMutations(['logout'])
   }
 }
 </script>
@@ -42,6 +46,20 @@ body {
   padding: 20px;
   float: right;
   opacity: 0.5;
+}
+
+.user{
+  padding: 20px;
+  float: right;
+  z-index: 3;
+}
+
+.user a{
+  background: rgb(243, 82, 82); 
+  border-radius: 3px;
+  padding: 5px 8px;
+  color: white;
+  margin-right: 15px;
 }
 
 #app {
