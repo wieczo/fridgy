@@ -48,7 +48,7 @@ export default {
     this.backgroundLogin = function () {
       // GET http://localhost:8081/current_user
       api.getCurrenttUser().then(function (currentUser) {
-        if (currentUser) {
+        if (currentUser && (currentUser.id !== this.$store.currentUser.id)) {
           this.$store.commit('login', currentUser)
         }
         this.timer = setTimeout(this.backgroundLogin.bind(this), 1000)
