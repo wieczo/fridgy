@@ -3,27 +3,25 @@
     <Login v-if="login_state=='logged_out'" v-bind:loginCallback="login" />
     <Logout v-if="login_state=='logging_out'"/>
     <div v-if="login_state=='logged_in'">
-
-    <div style="margin-right: 330px;">  
-      <div style="padding: 0px 60px 0px 30px;">
-        <h3>Produkte</h3>
-        <ProductList v-bind:items='products' v-bind:onProductClick='addToCart' />
-      </div>
-    </div>
-    <div class="cart_sidebar">  
-      <h3><i class="fas fa-shopping-cart"></i> Warenkorb ({{cartCount}})</h3>
-      <div class="cart_items">
-        <div v-if='cartCount==0'>
-          &laquo; Bitte wähle links die gewünschten Produkte aus
+      <div style="margin-right: 330px;">  
+        <div style="padding: 0px 60px 0px 30px;">
+          <h3>Produkte</h3>
+          <ProductList v-bind:items='products' v-bind:onProductClick='addToCart' />
         </div>
-        <ProductList v-bind:items='cart' v-bind:onProductClick='removeFromCart' compact="true" />
       </div>
-      <div class="total">
-        <button v-on:click='checkoutCart()'>Checkout</button>
-        <div style="float: right;">{{cartSum.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })}}</div>       
-      </div>
-
-    </div>  
+      <div class="cart_sidebar">  
+        <h3><i class="fas fa-shopping-cart"></i> Warenkorb ({{cartCount}})</h3>
+        <div class="cart_items">
+          <div v-if='cartCount==0'>
+            &laquo; Bitte wähle links die gewünschten Produkte aus
+          </div>
+          <ProductList v-bind:items='cart' v-bind:onProductClick='removeFromCart' compact="true" />
+        </div>
+        <div class="total">
+          <button v-on:click='checkoutCart()'>Checkout</button>
+          <div style="float: right;">{{cartSum.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })}}</div>
+        </div>
+      </div> 
     </div>
   </div>
 </template>
