@@ -6,7 +6,7 @@
     </h5>
     <span class="price">{{product.price.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })}}</span>
     <div v-if="compact!='true'">
-      <span class="description">{{product.description}}</span>      
+      <span class="description">{{product.description}}</span>
     </div>
   </div>
 </transition>
