@@ -34,6 +34,9 @@ export default new Vuex.Store({
         api.createLedger({userId: 1, productId: product.id, amount: product.price, date: Date.now()})
       }
       this.state.login_state = 'logging_out'
+      if (this.state.cart.length === 0) {
+        this.commit('logout')
+      }
     },
     async refreshProducts () {
       this.state.products = await api.getProducts()
