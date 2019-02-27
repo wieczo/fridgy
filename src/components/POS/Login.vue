@@ -7,6 +7,7 @@
 
       <div class='login'>
         <button v-on:click="loginCallback({id: 1, name: 'Daniel'})" href="#" >Alternative Anmeldung</button>
+        <button v-on:click="loginCallback({id: 1, name: 'Gast'})" href="#" >Gast</button>
       </div>
 
     </center>

@@ -123,6 +123,7 @@ button{
 
 button:active{
   opacity: 0.6;
+  transform: scale(0.95);
 }
 
 .cart_sidebar{
