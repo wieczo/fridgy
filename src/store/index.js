@@ -8,6 +8,7 @@ export default new Vuex.Store({
     current_user: false,
     login_state: 'logged_out',
     products: [{name: 'Unloaded'}],
+    users: [],
     cart: []
   },
   mutations: {
@@ -40,6 +41,9 @@ export default new Vuex.Store({
     },
     async refreshProducts () {
       this.state.products = await api.getProducts()
+    },
+    async refreshUsers () {
+      this.state.users = await api.getUsers()
     }
   },
   getters: {

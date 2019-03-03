@@ -2,7 +2,7 @@
 import axios from 'axios'
 
 const client = axios.create({
-  baseURL: 'http://10.3.141.1:8081/',
+  baseURL: 'http://localhost:8081/',
   json: true
 })
 

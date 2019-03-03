@@ -43,6 +43,7 @@ export default {
   },
   created () {
     this.$store.commit('refreshProducts')
+    this.$store.commit('refreshUsers')
     this.backgroundLogin = function () {
       // GET http://localhost:8081/current_user
       api.getCurrenttUser().then(function (currentUser) {

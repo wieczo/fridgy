@@ -10,16 +10,30 @@
         <button v-on:click="loginCallback({id: 1, name: 'Gast'})" href="#" >Gast</button>
       </div>
 
+      <div style="position: absolute; left: 20px; right: 0px; height: 130px; bottom: 0px; ">
+        <div>
+          <UserSelect v-for="user in users" v-bind:key="user.id" v-bind:user="user" v-bind:click="loginCallback" />
+        </div>
+      </div>
+
     </center>
   </div>
 </template>
 
 <script>
+
+import UserSelect from '@/components/POS/UserSelect'
+import { mapState } from 'vuex'
+
 export default {
   name: 'Login',
   props: {
     loginCallback: Function
-  }
+  },
+  computed: {
+    ...mapState(['users', 'cart', 'login_state', 'current_user'])
+  },
+  components: { UserSelect }
 }
 </script>
 
@@ -38,5 +52,6 @@ export default {
 
   .login {
     margin-top: 100px;
+    display: none;
   }
 </style>
