@@ -9,6 +9,9 @@ WORKDIR $APP_HOME
 ADD ./src/server.js $APP_HOME
 ADD ./test.sqlite $APP_HOME
 
+RUN apt-get update
+RUN apt-get -y install sqlite3 libsqlite3-dev
+
 VOLUME ["/fridy-backend"]
 
 RUN npm install express cors body-parser sequelize epilogue
