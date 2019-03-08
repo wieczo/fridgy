@@ -10,9 +10,7 @@ ADD ./src/server.js $APP_HOME
 ADD ./test.sqlite $APP_HOME
 
 RUN apt-get update && apt-get -y install sqlite3 libsqlite3-dev
-RUN rm -rf node_modules
-
-RUN npm install express cors body-parser sequelize epilogue sqlite3
 RUN npm install -g chalk each-async indent-string
+RUN npm install express cors body-parser sequelize epilogue sqlite3
 
 CMD ["node", "server.js"]
