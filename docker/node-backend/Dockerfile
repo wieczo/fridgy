@@ -15,4 +15,6 @@ RUN apt-get -y install sqlite3 libsqlite3-dev
 VOLUME ["/fridy-backend"]
 
 RUN npm install express cors body-parser sequelize epilogue
+RUN npm install -g chalk each-async indent-string
+
 CMD ["node", "server.js"]

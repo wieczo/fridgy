@@ -9,8 +9,12 @@ ADD . $APP_HOME
 
 VOLUME ["/fridy-frontend"]
 
-RUN npm i http-server -g
-RUN npm install chalk each-async indent-string
+RUN apt-get update
+RUN apt-get -y install sqlite3 libsqlite3-dev
+
+RUN npm i -g http-server
+RUN npm install -g chalk each-async indent-string
+
 RUN npm install
 RUN npm run build
 
