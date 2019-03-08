@@ -10,9 +10,8 @@ ADD . $APP_HOME
 RUN apt-get update && apt-get -y install sqlite3 libsqlite3-dev
 
 RUN npm i -g http-server
-RUN npm install
-
 RUN rm -rf node_modules
 
+CMD ["npm", "install"]
 CMD ["npm", "run build"]
 CMD ["http-server", "./dist"]
