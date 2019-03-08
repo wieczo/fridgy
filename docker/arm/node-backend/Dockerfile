@@ -2,6 +2,7 @@ FROM arm32v7/node:11
 
 EXPOSE 8081
 
+ENV NODE_ENV production
 ENV APP_HOME /fridy-backend
 RUN mkdir $APP_HOME
 WORKDIR $APP_HOME

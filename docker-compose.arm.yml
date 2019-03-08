@@ -4,7 +4,7 @@ services:
   web:
     build:
       context: .
-      dockerfile: ./docker/node-frontend/Dockerfile
+      dockerfile: ./docker/arm/node-frontend/Dockerfile
     environment:
       TZ: 'Europe/Berlin'
     ports:
@@ -20,7 +20,7 @@ services:
   api_backend:
     build: 
       context: .
-      dockerfile: ./docker/node-backend/Dockerfile
+      dockerfile: ./docker/arm/node-backend/Dockerfile
     ports:
      - "8081:8081"
     networks:
