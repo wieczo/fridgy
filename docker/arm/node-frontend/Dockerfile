@@ -15,6 +15,7 @@ RUN npm i -g http-server
 RUN npm install -g chalk each-async indent-string
 
 RUN npm install
+
 RUN npm run build
 
 CMD ["http-server", "./dist"]
