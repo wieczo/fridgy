@@ -10,6 +10,7 @@ ADD . $APP_HOME
 VOLUME ["/fridy-frontend"]
 
 RUN npm i http-server -g
+RUN npm install chalk each-async indent-string
 RUN npm install
 RUN npm run build
 
