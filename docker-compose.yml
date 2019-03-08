@@ -10,18 +10,21 @@ services:
     ports:
       - "8080:8080"
     links:
-      - backend:backend
+      - api_backend:api_backend
     volumes:
-      - .:/fridgy-frontend
+      - .:/fridgy
     privileged: true
     networks:
       - backend
 
-  backend:
-    build: ./docker/node-backend/Dockerfile
-    networks: 
+  api_backend:
+    build: 
+      context: .
+      dockerfile: ./docker/node-backend/Dockerfile
+    ports:
+     - "8081:8081"
+    networks:
       - backend
 
-
-networks: 
+networks:
   backend:
