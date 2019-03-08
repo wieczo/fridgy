@@ -7,12 +7,11 @@ services:
       dockerfile: ./docker/arm/node-frontend/Dockerfile
     environment:
       TZ: 'Europe/Berlin'
+      NODE_ENV: production
     ports:
       - "8080:8080"
     links:
       - api_backend:api_backend
-    volumes:
-      - .:/fridgy
     privileged: true
     networks:
       - backend
