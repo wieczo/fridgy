@@ -9,8 +9,8 @@ ADD . $APP_HOME
 
 VOLUME ["/fridy-frontend"]
 
-RUN npm install
 RUN npm i http-server -g
+RUN npm install
+RUN npm run build
 
-CMD ["npm", "run build"]
 CMD ["http-server", "./dist"]

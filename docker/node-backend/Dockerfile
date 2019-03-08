@@ -11,4 +11,5 @@ ADD ./test.sqlite $APP_HOME
 
 VOLUME ["/fridy-backend"]
 
+RUN npm install express cors body-parser sequelize epilogue
 CMD ["node", "server.js"]
