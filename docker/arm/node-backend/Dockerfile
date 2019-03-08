@@ -15,4 +15,4 @@ RUN rm -rf node_modules
 RUN npm install express cors body-parser sequelize epilogue
 RUN npm install -g chalk each-async indent-string
 
-CMD ["node", "server.js"]
+RUN node server.js
