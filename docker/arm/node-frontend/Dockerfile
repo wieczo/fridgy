@@ -1,4 +1,4 @@
-FROM arm32v7/node:11
+FROM arm32v7/node:11.11-stretch
 
 EXPOSE 8080
 
@@ -8,11 +8,10 @@ WORKDIR $APP_HOME
 ADD . $APP_HOME
 
 RUN apt-get update && apt-get -y install sqlite3 libsqlite3-dev
-
 RUN rm -rf node_modules
-RUN npm i -g http-server
 
-RUN npm install
-RUN npm run build
+RUN ["npm", "i -g http-server"]
+RUN ["npm", "install"]
+RUN ["npm", "run build"]
 
-RUN http-server ./dist
+CMD ["http-server", "./dist"]

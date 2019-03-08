@@ -1,4 +1,4 @@
-FROM arm32v7/node:11
+FROM arm32v7/node:11.11-stretch
 
 EXPOSE 8081
 
@@ -12,7 +12,7 @@ ADD ./test.sqlite $APP_HOME
 RUN apt-get update && apt-get -y install sqlite3 libsqlite3-dev
 RUN rm -rf node_modules
 
-RUN npm install express cors body-parser sequelize epilogue
-RUN npm install -g chalk each-async indent-string
+RUN ["npm", "i express cors body-parser sequelize epilogue"]
+RUN ["npm", "i -g chalk each-async indent-string"]
 
-RUN node server.js
+CMD ["node", "server.js"]
