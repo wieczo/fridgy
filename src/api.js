@@ -2,7 +2,7 @@
 import axios from 'axios'
 
 const client = axios.create({
-  baseURL: 'http://localhost:8081/',
+  baseURL: process.env.BACKEND_SERVER || 'http://localhost:8081/',
   json: true
 })
 
