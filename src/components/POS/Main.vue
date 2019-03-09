@@ -27,7 +27,6 @@
 </template>
 
 <script>
-
 import Login from '@/components/POS/Login'
 import Logout from '@/components/POS/Logout'
 import ProductList from '@/components/POS/ProductList'
