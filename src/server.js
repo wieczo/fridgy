@@ -34,6 +34,8 @@ let database = new Sequelize({
 // name, email, rfid_key, karma, credit_debit
 let User = database.define('users', {
   name: Sequelize.STRING,
+  firstname: Sequelize.STRING,
+  lastname: Sequelize.STRING,
   email: Sequelize.STRING,
   rfid_key: Sequelize.STRING,
   karma: Sequelize.TINYINT,
@@ -66,10 +68,10 @@ epilogue.initialize({
 })
 
 app.get('/current_user', function (req, res) {
-  User.findAll({where: {id: current_user}})
+  User.findOne({where: {id: current_user}})
     .then(function(user) {
       if (user) {
-        res.json(user[0])
+        res.json(user)
       }
     })
 })
@@ -105,11 +107,12 @@ let ledgerRessource = epilogue.resource({
 })
 
 // Resets the database and launches the express app on :8081
+// .sync({ force: true })
 database
-  .sync({ force: true })
+  .sync()
   .then(() => {
-    User.create({name: "David", rfid_key: 316023195878})
-    User.create({name: "Jens", rfid_key: 590504744560})
+    // User.findOrCreate({where: {name: "DBr", firstname: "David", lastname: "Brookx", rfid_key: 316023195878}})
+    // User.findOrCreate({where: {name: "JS", firstname: "Jens", lastname: "Schneezin", rfid_key: 590504744560}})
     app.listen(8081, '0.0.0.0', () => {
       console.log('listening to port localhost:8081')
     })
