@@ -12,8 +12,8 @@ RUN npm install -g http-server
 
 COPY package*.json ./
 RUN npm install
-RUN npm run build
 
 COPY . $APP_HOME
+RUN npm run build
 
 CMD ["http-server", "./dist"]
