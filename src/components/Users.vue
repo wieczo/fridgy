@@ -8,16 +8,21 @@
           <thead>
             <tr>
               <th>Name</th>
+              <th>Vorname</th>
+              <th>Nachname</th>
               <th>Karma</th>
               <th>Kontostand</th>
-              <th>&nbsp;</th>
+              <th>RFID</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="user in users" :key="user.id">
               <td>{{ user.name }}</td>
+              <td>{{ user.firstname }}</td>
+              <td>{{ user.lastname }}</td>
               <td>{{ user.karma }}</td>
               <td>{{ user.credit_debit }}</td>
+              <td>{{ user.rfid_key }}</td>
               <td class="text-right">
                 <a href="#" @click.prevent="populateUserToEdit(user)">Bearbeiten</a> -
                 <a href="#" @click.prevent="deleteUser(user.id)">Löschen</a>
@@ -32,14 +37,23 @@
             <b-form-group label="Name">
               <b-form-input type="text" v-model="model.name"></b-form-input>
             </b-form-group>
+            <b-form-group label="Vorname">
+              <b-form-input type="text" v-model="model.firstname"></b-form-input>
+            </b-form-group>
+            <b-form-group label="Lastname">
+              <b-form-input type="text" v-model="model.lastname"></b-form-input>
+            </b-form-group>
             <b-form-group label="Karma">
               <b-form-input type="text" v-model="model.karma"></b-form-input>
             </b-form-group>
             <b-form-group label="Kontostand">
               <b-form-input type="decimal" v-model="model.credit_debit"></b-form-input>
             </b-form-group>
+            <b-form-group label="RFID-Key">
+              <b-form-input type="decimal" v-model="model.rfid_key"></b-form-input>
+            </b-form-group>
             <div>
-              <b-btn type="submit" variant="success">Save User</b-btn>
+              <b-btn type="submit" variant="success">Speichern</b-btn>
             </div>
           </form>
         </b-card>
