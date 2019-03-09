@@ -8,9 +8,8 @@ WORKDIR $APP_HOME
 
 RUN apt-get update && apt-get -y install sqlite3 libsqlite3-dev
 
-COPY package*.json $APP_HOME
-COPY ./src/server.js $APP_HOME
-COPY ./test.sqlite $APP_HOME
+COPY package*.json ./
+COPY ./src/server.js ./
 
 RUN npm install
 
