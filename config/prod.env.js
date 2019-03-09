@@ -1,7 +1,4 @@
-
-var backendApi = process.env.BACKEND_API || '"http://raspberrypi:8081/"'
-
 module.exports = {
   NODE_ENV: '"production"',
-  BACKEND_API: backendApi
+  VUE_APP_BACKEND_API_URL: process.env.VUE_APP_BACKEND_API_URL
 }

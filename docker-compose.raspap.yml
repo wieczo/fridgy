@@ -5,9 +5,10 @@ services:
     build:
       context: .
       dockerfile: ./docker/arm/node-frontend/Dockerfile
+      args:
+        vue_app_backend_api_url: '"http://10.3.141.1:8081"'
     environment:
       TZ: 'Europe/Berlin'
-      BACKEND_API: 'http://10.3.141.1:8081/'
     ports:
       - "8080:8080"
     links:

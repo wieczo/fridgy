@@ -39,6 +39,10 @@ https://developer.okta.com/blog/2018/02/15/build-crud-app-vuejs-node
 - [Epiloque // flexible REST endpoints and controllers from Sequelize](https://github.com/dchester/epilogue)
 - [Sequelize // Database ORM](http://docs.sequelizejs.com/)
 
+## Docker for Production
+
+- install Docker `$ curl -sSL https://get.docker.com | sh`
+
 ## Local Development
 
 - Fire up two terminal windows

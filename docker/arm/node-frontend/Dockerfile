@@ -16,6 +16,12 @@ COPY package-lock.json ./
 RUN npm install 
 
 COPY . $APP_HOME
+
+ARG vue_app_backend_api_url
+ENV VUE_APP_BACKEND_API_URL=$vue_app_backend_api_url
+
+RUN echo "VUE_APP_BACKEND_API_URL=$VUE_APP_BACKEND_API_URL" > .env
+
 RUN npm run build
 
 CMD ["http-server", "./dist"]

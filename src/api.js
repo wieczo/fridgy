@@ -1,8 +1,10 @@
 // import Vue from 'vue'
 import axios from 'axios'
 
+var baseUrl = process.env.VUE_APP_BACKEND_API_URL || 'http://localhost:8081/'
+
 const client = axios.create({
-  baseURL: process.env.BACKEND_API || 'http://localhost:8081/',
+  baseURL: baseUrl,
   json: true
 })
 
