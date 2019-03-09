@@ -23,6 +23,13 @@ export default {
       return req.data
     })
   },
+  // Users
+  getCurrenttUser () {
+    return this.execute('get', `/current_user`)
+  },
+  deleteCurrenttUser () {
+    return this.execute('delete', `/current_user`)
+  },
   getUsers () {
     return this.execute('get', '/users')
   },
@@ -38,6 +45,7 @@ export default {
   deleteUser (id) {
     return this.execute('delete', `/users/${id}`)
   },
+  // Products
   getProducts () {
     return this.execute('get', '/products')
   },
@@ -53,13 +61,8 @@ export default {
   deleteProduct (id) {
     return this.execute('delete', `/products/${id}`)
   },
+  // Ledger
   createLedger (data) {
     return this.execute('post', '/ledger', data)
-  },
-  getCurrenttUser () {
-    return this.execute('get', `/current_user`)
-  },
-  deleteCurrenttUser () {
-    return this.execute('delete', `/current_user`)
   }
 }
