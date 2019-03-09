@@ -1,5 +1,5 @@
 
-var backendApi = process.env.BACKEND_API || '"http://localhost:8081/"'
+var backendApi = process.env.BACKEND_API || '"http://raspberrypi:8081/"'
 
 module.exports = {
   NODE_ENV: '"production"',
