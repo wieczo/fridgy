@@ -6,11 +6,12 @@ ENV APP_HOME /fridgy-backend
 RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 
-ADD ./src/server.js $APP_HOME
-ADD ./test.sqlite $APP_HOME
-
 RUN apt-get update && apt-get -y install sqlite3 libsqlite3-dev
-RUN npm install -g chalk each-async indent-string
-RUN npm install express cors body-parser sequelize epilogue sqlite3
+
+COPY package*.json $APP_HOME
+COPY ./src/server.js $APP_HOME
+COPY ./test.sqlite $APP_HOME
+
+RUN npm install
 
 CMD ["node", "server.js"]
