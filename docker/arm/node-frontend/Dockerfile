@@ -3,6 +3,7 @@ FROM arm32v7/node:11.11-stretch
 EXPOSE 8080
 
 ENV APP_HOME /fridgy-frontend
+ENV NODE_ENV production
 RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 
