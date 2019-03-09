@@ -24,8 +24,6 @@ app.use(function(req, res, next) {
 
 app.use(bodyParser.json())
 
-
-
 // For ease of this tutorial, we are going to use SQLite to limit dependencies
 let database = new Sequelize({
   dialect: 'sqlite',
@@ -112,8 +110,7 @@ database
   .then(() => {
     User.create({name: "David", rfid_key: 316023195878})
     User.create({name: "Jens", rfid_key: 590504744560})
-    app.listen(8081, () => {
+    app.listen(8081, '0.0.0.0', () => {
       console.log('listening to port localhost:8081')
     })
   })
-

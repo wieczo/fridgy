@@ -10,7 +10,6 @@ services:
       NODE_ENV: production
     ports:
       - "8080:8080"
-      - "8081:8081"
     links:
       - api_backend:api_backend
     privileged: true
