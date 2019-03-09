@@ -7,7 +7,7 @@ services:
       dockerfile: ./docker/arm/node-frontend/Dockerfile
     environment:
       TZ: 'Europe/Berlin'
-      VUE_APP_BACKEND_SERVER: http://10.3.141.1:8081
+      BACKEND_API: '"http://10.3.141.1:8081/"'
     ports:
       - "8080:8080"
     links:
