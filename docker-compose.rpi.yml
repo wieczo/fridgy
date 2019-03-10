@@ -27,10 +27,10 @@ services:
     networks:
       - backend
 
-  rfid_reader:
-    build: https://github.com/simonneutert/MFRC522-python.git
-    networks:
-      - backend
+  # rfid_reader:
+  #   build: https://github.com/simonneutert/MFRC522-python.git
+  #   networks:
+  #     - backend
 
 
 networks:
