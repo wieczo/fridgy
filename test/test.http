@@ -1,5 +1,5 @@
 ###
-GET http://localhost:8081/current_user
+GET http://localhost:8081/user
 
 ###
-POST http://localhost:8081/current_user/316023195878
+POST http://localhost:8081/user/316023195878

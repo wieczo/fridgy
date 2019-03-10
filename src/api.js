@@ -25,10 +25,10 @@ export default {
   },
   // Users
   getCurrenttUser () {
-    return this.execute('get', `/current_user`)
+    return this.execute('get', `/user`)
   },
   deleteCurrenttUser () {
-    return this.execute('delete', `/current_user`)
+    return this.execute('delete', `/user`)
   },
   getUsers () {
     return this.execute('get', '/users')

@@ -1,8 +1,8 @@
 <template>
   <div class="pos">    
-    <Login v-if="login_state=='logged_out'" v-bind:loginCallback="login" />
-    <Logout v-if="login_state=='logging_out'"/>
-    <div v-if="login_state=='logged_in'">
+    <Login v-if="loginState=='loggedOut'" v-bind:loginCallback="login" />
+    <Logout v-if="loginState=='loggingOut'"/>
+    <div v-if="loginState=='loggedIn'">
       <div style="margin-right: 330px;">  
         <div style="padding: 0px 60px 0px 30px;">
           <h3>Produkte</h3>
@@ -37,14 +37,14 @@ export default {
   name: 'Main',
   data () {
     return {
-      state: 'logged_out'
+      state: 'loggedOut'
     }
   },
   created () {
     this.$store.commit('refreshProducts')
     this.$store.commit('refreshUsers')
     this.backgroundLogin = function () {
-      // GET http://localhost:8081/current_user
+      // GET http://localhost:8081/user
       api.getCurrenttUser().then(function (currentUser) {
         if (currentUser && (currentUser.id !== this.$store.currentUser.id)) {
           this.$store.commit('login', currentUser)
@@ -55,7 +55,7 @@ export default {
     this.timer = setTimeout(this.backgroundLogin.bind(this), 1000)
   },
   computed: {
-    ...mapState(['products', 'cart', 'login_state', 'current_user']),
+    ...mapState(['products', 'cart', 'loginState', 'currentUser']),
     ...mapGetters(['cartCount', 'cartSum'])
   },
   components: { Login, Logout, ProductList },

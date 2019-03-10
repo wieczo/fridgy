@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 const Sequelize = require('sequelize')
 const epilogue = require('epilogue')
 
-var current_user = 0
+var currentUser = 0
 
 let app = express()
 
@@ -67,8 +67,8 @@ epilogue.initialize({
   sequelize: database
 })
 
-app.get('/current_user', function (req, res) {
-  User.findOne({where: {id: current_user}})
+app.get('/user', function (req, res) {
+  User.findOne({where: {id: currentUser}})
     .then(function(user) {
       if (user) {
         res.json(user)
@@ -76,18 +76,18 @@ app.get('/current_user', function (req, res) {
     })
 })
 
-app.post('/current_user/:rfid', function (req, res) {
-  User.findAll({where: {rfid_key: req.params.rfid}})
+app.post('/user/:rfid', function (req, res) {
+  User.findOne({where: {rfid_key: req.params.rfid}})
     .then(function(user) {
       if (user) {
-        current_user = user[0].id
+        currentUser = user.id
       }
     })
   res.send('Successful POST request to the homepage')
 })
 
-app.delete('/current_user/', function (req, res) {
-  current_user = 0
+app.delete('/user', function (req, res) {
+  currentUser = 0
 })
 
 // Create the dynamic REST resource for our Post model

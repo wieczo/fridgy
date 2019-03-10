@@ -5,22 +5,22 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    current_user: false,
-    login_state: 'logged_out',
+    currentUser: false,
+    loginState: 'loggedOut',
     products: [{name: 'Unloaded'}],
     users: [],
     cart: []
   },
   mutations: {
     login (context, user) {
-      this.state.login_state = 'logged_in'
+      this.state.loginState = 'loggedIn'
       this.state.cart = []
-      this.state.current_user = user
+      this.state.currentUser = user
     },
     logout () {
       api.deleteCurrenttUser()
-      this.state.login_state = 'logged_out'
-      this.state.current_user = false
+      this.state.loginState = 'loggedOut'
+      this.state.currentUser = false
       this.state.cart = []
     },
     addToCart (context, payload) {
@@ -34,7 +34,7 @@ export default new Vuex.Store({
         var product = this.state.cart[i]
         api.createLedger({userId: 1, productId: product.id, amount: product.price, date: Date.now()})
       }
-      this.state.login_state = 'logging_out'
+      this.state.loginState = 'loggingOut'
       if (this.state.cart.length === 0) {
         this.commit('logout')
       }

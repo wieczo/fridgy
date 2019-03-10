@@ -31,7 +31,7 @@ export default {
     loginCallback: Function
   },
   computed: {
-    ...mapState(['users', 'cart', 'login_state', 'current_user'])
+    ...mapState(['users', 'cart', 'loginState', 'currentUser'])
   },
   components: { UserSelect }
 }

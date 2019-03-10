@@ -3,9 +3,9 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <header>
       <span class="time">{{currentTime}}</span>
-      <span class="user" v-if="current_user">
+      <span class="user" v-if="currentUser">
         <a v-on:click="logout()">Logout</a>
-        <i class="fas fa-user"></i> {{current_user.name}}
+        <i class="fas fa-user"></i> {{currentUser.name}}
       </span>
       <span><i class='fas fa-beer'></i> Fridge-Checkout</span>      
     </header>
@@ -29,7 +29,7 @@ export default {
     currentTime: '00:00'
   },
   computed: {
-    ...mapState(['current_user'])
+    ...mapState(['currentUser'])
   },
   methods: {
     ...mapMutations(['logout'])
