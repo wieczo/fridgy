@@ -10,10 +10,10 @@ RUN apt-get update && apt-get -y install sqlite3 libsqlite3-dev
 
 COPY package.json ./
 COPY package-lock.json ./
-COPY ./src/server.js ./
-
 # Make sure NODE_ENV is NOT set to production
 # this will brake npm install and building vue
 RUN npm install
+
+COPY ./src/server.js ./
 
 CMD ["node", "server.js"]
