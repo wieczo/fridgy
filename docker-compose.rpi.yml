@@ -13,13 +13,10 @@ services:
       - "8080:8080"
     links:
       - api_backend:api_backend
-      - rfid_reader:rfid_reader
+      # - rfid_reader:rfid_reader
     privileged: true
     networks:
       - backend
-
-  rfid_reader:
-    build: https://github.com/simonneutert/MFRC522-python.git
 
   api_backend:
     build: 
@@ -29,6 +26,12 @@ services:
      - "8081:8081"
     networks:
       - backend
+
+  rfid_reader:
+    build: https://github.com/simonneutert/MFRC522-python.git
+    networks:
+      - backend
+
 
 networks:
   backend:

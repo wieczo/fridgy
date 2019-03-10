@@ -18,16 +18,17 @@ services:
     networks:
       - backend
 
-  # this sets up the rfid reader mfrc522 all by itself
-  rfid_reader:
-    build: https://github.com/simonneutert/MFRC522-python.git
-
   api_backend:
     build: 
       context: .
       dockerfile: ./docker/arm/node-backend/Dockerfile
     ports:
      - "8081:8081"
+    networks:
+      - backend
+
+  rfid_reader:
+    build: https://github.com/simonneutert/MFRC522-python.git
     networks:
       - backend
 
