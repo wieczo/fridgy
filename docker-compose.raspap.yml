@@ -13,9 +13,14 @@ services:
       - "8080:8080"
     links:
       - api_backend:api_backend
+      - rfid_reader:rfid_reader
     privileged: true
     networks:
       - backend
+
+  # this sets up the rfid reader mfrc522 all by itself
+  rfid_reader:
+    build: https://github.com/simonneutert/MFRC522-python.git
 
   api_backend:
     build: 
