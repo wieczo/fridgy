@@ -24,16 +24,16 @@
             </tr>
           </tbody>
         </table>
+        <h3> Summe: {{ledgers.map(x => x.amount).reduce((accumulator, currentValue) => accumulator + currentValue) }} </h3>
       </b-col>
       <b-col lg="3">
         <b-card :title="'Konto aufladen'" style="text-align:center;">
           <span>Zahlung per Paypal an Simon oder ins Sparschwein, dann Button drücken:</span>
+          <br>
           <button>5 EUR</button><br>
           <button>10 EUR</button><br>
           <button>15 EUR</button><br>
           <button>20 EUR</button><br>
-
-
         </b-card>
       </b-col>
     </b-row>
