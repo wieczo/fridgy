@@ -84,7 +84,7 @@ app.post('/user/:rfid', function (req, res) {
         currentUser = user.id
       }
     })
-  res.send('Successful POST request to the homepage')
+  res.send("currentUser is: " + currentUser)
 })
 
 app.delete('/user', function (req, res) {
