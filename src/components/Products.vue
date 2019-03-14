@@ -41,7 +41,7 @@
               <b-form-textarea rows="4" v-model="model.description"></b-form-textarea>
             </b-form-group>
             <b-form-group label="Preis">
-              <b-form-input type="decimal" v-model="model.price"></b-form-input>
+              <b-form-input type="text" v-model="model.price"></b-form-input>
             </b-form-group>
             <div>
               <b-btn type="submit" variant="success">Save Product</b-btn>
