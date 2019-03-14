@@ -73,6 +73,9 @@ app.get('/user', function (req, res) {
     .then(function(user) {
       if (user) {
         res.json(user)
+        currentUser = 0
+      } else {
+        res.status(404).send('not found')
       }
     })
 })

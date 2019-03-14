@@ -66,6 +66,6 @@ export default {
     return this.execute('post', '/ledgers', data)
   },
   getLedgers (userid) {
-    return this.execute('get', `/ledgers?userId=${userid}`)
+    return this.execute('get', `/ledgers?userId=${userid}&sort=-date`)
   }
 }

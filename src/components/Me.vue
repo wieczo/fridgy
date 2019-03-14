@@ -4,6 +4,7 @@
     <b-alert :show="loading" variant="info">Loading...</b-alert>
     <b-row>
       <b-col>
+        <h3> Summe: {{ ledgers.map(x => x.amount).reduce((accumulator, currentValue) => accumulator + currentValue).toLocaleString('de-DE', { style: 'currency', currency: 'EUR' }) }} </h3>
         <table class="table table-striped">
           <thead>
             <tr>
@@ -17,7 +18,7 @@
             <tr v-for="ledger in ledgers" :key="ledger.id">
               <td>{{ new Date(ledger.date).toLocaleDateString("de-DE") + ' ' + new Date(ledger.date).toLocaleTimeString("de-DE") }}</td>
               <td>{{ ledger.purpose }}</td>
-              <td>{{ ledger.amount }} EUR</td>
+              <td>{{ ledger.amount.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' }) }}</td>
               <td class="text-right">
                 <a href="#" @click.prevent="denkstePuppe(user)">STORNO KASSE 3</a>
               </td>

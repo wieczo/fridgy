@@ -8,7 +8,7 @@ export default new Vuex.Store({
     currentUser: false,
     loginState: 'loggedOut',
     products: [{name: 'Unloaded'}],
-    ledgers: [],
+    ledgers: [{test: 'tt'}],
     users: [],
     cart: []
   },
@@ -25,7 +25,7 @@ export default new Vuex.Store({
       this.state.cart = []
       this.state.ledgers = []
       this.state.currentUser = user
-      this.commit('refreshLedgers')
+      this.dispatch('refreshLedgers')
     },
     logout () {
       // api.deleteCurrenttUser()
@@ -52,10 +52,10 @@ export default new Vuex.Store({
     },
     chargeBalance (context, payload) {
       api.createLedger({userId: this.state.currentUser.id, amount: payload.amount * 1, purpose: 'Einzahlung: ' + payload.amount.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' }), date: Date.now()})
-      this.refreshLedgers()
+      this.dispatch('refreshLedgers')
     },
-    async refreshLedgers () {
-      this.state.ledgers = await api.getLedgers(this.state.currentUser.id)
+    setLedgers (state, payload) {
+      this.state.ledgers = payload.ledgers
     },
     async refreshProducts () {
       this.state.products = await api.getProducts()
@@ -72,6 +72,12 @@ export default new Vuex.Store({
       return state.cart.reduce(function (prev, item) {
         return prev + item.price
       }, 0)
+    }
+  },
+  actions: {
+    async refreshLedgers () {
+      var ledgers = await api.getLedgers(this.state.currentUser.id)
+      this.commit('setLedgers', {ledgers: ledgers})
     }
   }
 })
