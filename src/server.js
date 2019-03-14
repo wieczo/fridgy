@@ -56,6 +56,7 @@ let Product = database.define('products', {
 // Define our Transaction model
 let Ledger = database.define('ledger', {
   amount: Sequelize.DECIMAL,
+  purpose: Sequelize.STRING,
   date: Sequelize.DATE
 })
 Ledger.belongsTo(User)
@@ -101,7 +102,7 @@ let shopResource = epilogue.resource({
   endpoints: ['/users', '/users/:id']
 })
 
-let ledgerRessource = epilogue.resource({
+epilogue.resource({
   model: Ledger,
   endpoints: ['/ledger', '/ledger/:id']
 })
