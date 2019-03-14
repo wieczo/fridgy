@@ -2,8 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Main from '@/components/POS/Main'
 import Products from '@/components/Products'
-import Product from '@/components/Product'
 import Users from '@/components/Users'
+import Me from '@/components/Me'
 
 Vue.use(Router)
 
@@ -20,14 +20,14 @@ export default new Router({
       component: Users
     },
     {
+      path: '/me',
+      name: 'Mein Konto',
+      component: Me
+    },
+    {
       path: '/products',
       name: 'Products',
       component: Products
-    },
-    {
-      path: '/products/:id',
-      name: 'Product',
-      component: Product
     }
   ]
 })

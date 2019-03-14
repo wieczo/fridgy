@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid mt-4">
+  <div class="container-fluid mt-4" style="background-color: #fff;">
     <h1 class="h1">User Manager</h1>
     <b-alert :show="loading" variant="info">Loading...</b-alert>
     <b-row>
@@ -11,8 +11,9 @@
               <th>Vorname</th>
               <th>Nachname</th>
               <th>Karma</th>
-              <th>Kontostand</th>
+              <th>Initialer Kontostand</th>
               <th>RFID</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>

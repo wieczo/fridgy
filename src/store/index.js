@@ -32,7 +32,7 @@ export default new Vuex.Store({
     checkoutCart () {
       for (var i = 0; i < this.state.cart.length; i++) {
         var product = this.state.cart[i]
-        api.createLedger({userId: 1, productId: product.id, amount: product.price, date: Date.now()})
+        api.createLedger({userId: 1, productId: product.id, amount: product.price * -1, purpose: 'Einkauf: ' + product.name, date: Date.now()})
       }
       this.state.loginState = 'loggingOut'
       if (this.state.cart.length === 0) {
