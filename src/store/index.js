@@ -1,6 +1,7 @@
 import api from '@/api'
 import Vuex from 'vuex'
 import Vue from 'vue'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -34,6 +35,10 @@ export default new Vuex.Store({
         var product = this.state.cart[i]
         api.createLedger({userId: 1, productId: product.id, amount: product.price * -1, purpose: 'Einkauf: ' + product.name, date: Date.now()})
       }
+
+      var audio = new Audio('/static/checkout.mp3')
+      audio.play()
+
       this.state.loginState = 'loggingOut'
       if (this.state.cart.length === 0) {
         this.commit('logout')
