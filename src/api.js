@@ -64,5 +64,8 @@ export default {
   // Ledger
   createLedger (data) {
     return this.execute('post', '/ledger', data)
+  },
+  getLedgers () {
+    return this.execute('get', '/ledger')
   }
 }

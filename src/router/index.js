@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Main from '@/components/POS/Main'
 import Products from '@/components/Products'
 import Users from '@/components/Users'
+import Me from '@/components/Me'
 
 Vue.use(Router)
 
@@ -17,6 +18,11 @@ export default new Router({
       path: '/users',
       name: 'Users',
       component: Users
+    },
+    {
+      path: '/me',
+      name: 'Mein Konto',
+      component: Me
     },
     {
       path: '/products',
