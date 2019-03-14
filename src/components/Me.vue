@@ -19,7 +19,7 @@
               <td>{{ ledger.purpose }}</td>
               <td>{{ ledger.amount }} EUR</td>
               <td class="text-right">
-                <a href="#" @click.prevent="populateUserToEdit(user)">STORNO KASSE 3</a>
+                <a href="#" @click.prevent="denkstePuppe(user)">STORNO KASSE 3</a>
               </td>
             </tr>
           </tbody>
@@ -28,12 +28,10 @@
       <b-col lg="3">
         <b-card :title="'Konto aufladen'" style="text-align:center;">
           <span>Zahlung per Paypal an Simon oder ins Sparschwein, dann Button drücken:</span>
-          <button>5 EUR</button><br>
-          <button>10 EUR</button><br>
-          <button>15 EUR</button><br>
-          <button>20 EUR</button><br>
-
-
+          <button v-on:click="chargeBalance({amount: 5})">5 EUR</button><br>
+          <button v-on:click="chargeBalance({amount: 10})">10 EUR</button><br>
+          <button v-on:click="chargeBalance({amount: 15})">15 EUR</button><br>
+          <button v-on:click="chargeBalance({amount: 20})">20 EUR</button>
         </b-card>
       </b-col>
     </b-row>
@@ -41,46 +39,25 @@
 </template>
 
 <script>
-import api from '@/api'
+import {mapMutations, mapState} from 'vuex'
+
 export default {
   data () {
     return {
       loading: false,
-      ledgers: [{name: 'fake'}],
       model: {}
     }
   },
   async created () {
-    this.refreshLedgers()
+    if (!this.currentUser.id) {
+      this.$router.push('/')
+    }
+  },
+  computed: {
+    ...mapState(['users', 'cart', 'loginState', 'currentUser', 'ledgers'])
   },
   methods: {
-    async refreshLedgers () {
-      this.loading = true
-      this.ledgers = await api.getLedgers()
-      this.loading = false
-    },
-    async populateUserToEdit (user) {
-      this.model = Object.assign({}, user)
-    },
-    async saveUser () {
-      if (this.model.id) {
-        await api.updateUser(this.model.id, this.model)
-      } else {
-        await api.createUser(this.model)
-      }
-      this.model = {} // reset form
-      await this.refreshUsers()
-    },
-    async deleteUser (id) {
-      if (confirm('Are you sure you want to delete this product?')) {
-        // if we are editing a product we deleted, remove it from the form
-        if (this.model.id === id) {
-          this.model = {}
-        }
-        await api.deleteUser(id)
-        await this.refreshUsers()
-      }
-    }
+    ...mapMutations(['chargeBalance'])
   }
 }
 </script>

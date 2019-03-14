@@ -8,6 +8,10 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import store from './store'
 
+store.subscribe((mutation, state) => {
+  localStorage.setItem('store', JSON.stringify(state))
+})
+
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false
 
@@ -17,5 +21,8 @@ new Vue({
   router,
   store,
   template: '<App/>',
-  components: { App }
+  components: { App },
+  beforeCreate () {
+    this.$store.commit('initialiseStore')
+  }
 })

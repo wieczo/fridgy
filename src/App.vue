@@ -4,8 +4,8 @@
     <header>
       <span class="time">{{currentTime}}</span>
       <span class="user" v-if="currentUser">
-        <a v-on:click="logout()">Logout</a>
-        <i class="fas fa-user"></i> {{currentUser.name}}
+        <a v-on:click="logout()" class="logout">Logout</a>
+        <i class="fas fa-user"></i> <router-link to="/me"><a style="color:#fff">{{currentUser.name}}</a></router-link>
       </span>
       <span><i class='fas fa-beer'></i> Fridge-Checkout</span>      
     </header>
@@ -16,13 +16,13 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
   name: 'app',
   created () {
     setInterval((e) => {
-      this.currentTime = new Date().getHours() + ':' + new Date().getMinutes()
+      this.currentTime = new Date().toLocaleTimeString('de-DE', {hour: '2-digit', minute: '2-digit'})
     }, 1000)
   },
   props: {
@@ -32,7 +32,10 @@ export default {
     ...mapState(['currentUser'])
   },
   methods: {
-    ...mapMutations(['logout'])
+    logout () {
+      this.$store.commit('logout')
+      this.$router.push('/')
+    }
   }
 }
 </script>
@@ -54,12 +57,12 @@ body {
   z-index: 3;
 }
 
-.user a{
+.user a.logout{
   background: rgb(243, 82, 82); 
   border-radius: 3px;
   padding: 5px 8px;
   color: white;
-  margin-right: 15px;
+  margin-right:15px;
 }
 
 #app {

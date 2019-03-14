@@ -63,9 +63,9 @@ export default {
   },
   // Ledger
   createLedger (data) {
-    return this.execute('post', '/ledger', data)
+    return this.execute('post', '/ledgers', data)
   },
-  getLedgers () {
-    return this.execute('get', '/ledger')
+  getLedgers (userid) {
+    return this.execute('get', `/ledgers?userId=${userid}`)
   }
 }

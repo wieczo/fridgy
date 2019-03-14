@@ -104,7 +104,7 @@ let shopResource = epilogue.resource({
 
 epilogue.resource({
   model: Ledger,
-  endpoints: ['/ledger', '/ledger/:id']
+  endpoints: ['/ledgers', '/ledgers/:id']
 })
 
 // Resets the database and launches the express app on :8081

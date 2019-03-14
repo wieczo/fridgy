@@ -8,20 +8,31 @@ export default new Vuex.Store({
     currentUser: false,
     loginState: 'loggedOut',
     products: [{name: 'Unloaded'}],
+    ledgers: [],
     users: [],
     cart: []
   },
   mutations: {
+    initialiseStore (state) {
+      if (localStorage.getItem('store')) {
+        this.replaceState(
+          Object.assign(state, JSON.parse(localStorage.getItem('store')))
+        )
+      }
+    },
     login (context, user) {
       this.state.loginState = 'loggedIn'
       this.state.cart = []
+      this.state.ledgers = []
       this.state.currentUser = user
+      this.commit('refreshLedgers')
     },
     logout () {
-      api.deleteCurrenttUser()
+      // api.deleteCurrenttUser()
       this.state.loginState = 'loggedOut'
       this.state.currentUser = false
       this.state.cart = []
+      this.state.ledgers = []
     },
     addToCart (context, payload) {
       this.state.cart.push(payload.product)
@@ -32,12 +43,19 @@ export default new Vuex.Store({
     checkoutCart () {
       for (var i = 0; i < this.state.cart.length; i++) {
         var product = this.state.cart[i]
-        api.createLedger({userId: 1, productId: product.id, amount: product.price * -1, purpose: 'Einkauf: ' + product.name, date: Date.now()})
+        api.createLedger({userId: this.state.currentUser.id, productId: product.id, amount: product.price * -1, purpose: 'Einkauf: ' + product.name, date: Date.now()})
       }
       this.state.loginState = 'loggingOut'
       if (this.state.cart.length === 0) {
         this.commit('logout')
       }
+    },
+    chargeBalance (context, payload) {
+      api.createLedger({userId: this.state.currentUser.id, amount: payload.amount * 1, purpose: 'Einzahlung: ' + payload.amount.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' }), date: Date.now()})
+      this.refreshLedgers()
+    },
+    async refreshLedgers () {
+      this.state.ledgers = await api.getLedgers(this.state.currentUser.id)
     },
     async refreshProducts () {
       this.state.products = await api.getProducts()
