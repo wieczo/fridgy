@@ -45,14 +45,22 @@ export default {
     this.$store.commit('refreshUsers')
     this.backgroundLogin = function () {
       // GET http://localhost:8081/user
+      console.log('Checking RFID...')
       api.getCurrenttUser().then(function (currentUser) {
-        if (currentUser && (currentUser.id !== this.$store.currentUser.id)) {
+        console.log('-> Received RFID...')
+        console.log(this.currentUser)
+        // && this.$store.currentUser && (currentUser.id !== this.$store.currentUser.id)
+        if (this.currentUser === false || (this.currentUser && currentUser && this.currentUser.id !== currentUser.id)) {
+          console.log('RFIDLogin')
           this.$store.commit('login', currentUser)
         }
+        this.timer = setTimeout(this.backgroundLogin.bind(this), 1000)
+      }.bind(this), function () {
         this.timer = setTimeout(this.backgroundLogin.bind(this), 1000)
       }.bind(this))
     }
     this.timer = setTimeout(this.backgroundLogin.bind(this), 1000)
+    console.log('INIT')
   },
   computed: {
     ...mapState(['products', 'cart', 'loginState', 'currentUser']),
