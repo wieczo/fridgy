@@ -1,6 +1,5 @@
-version: '2'
+version: '2.2'
 services:
-
   web:
     build:
       context: .
@@ -31,9 +30,10 @@ services:
     build:
       context: .
       dockerfile: ./docker/arm/rfid-reader/Dockerfile
+    read_only: true
+    privileged: true
     networks:
       - backend
-    privileged: true
 
 networks:
   backend:
