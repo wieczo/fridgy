@@ -12,20 +12,17 @@
 </template>
 
 <script>
-import { mapMutations, mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'Logout',
   created () {
     setTimeout(e => {
-      this.logout()
+      this.$store.dispatch('logoutAction')
     }, 5000)
   },
   computed: {
     ...mapGetters(['cartCount', 'cartSum'])
-  },
-  methods: {
-    ...mapMutations(['logout'])
   }
 }
 </script>
@@ -37,5 +34,4 @@ export default {
     color: #fff;
     margin-bottom: 40px;
   }
-
 </style>

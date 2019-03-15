@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid mt-4">
-    <h1 class="h1">Mein Konto</h1>
     <b-alert :show="loading" variant="info">Loading...</b-alert>
+    <b-alert :show="errorMsg" variant="danger" dismissible>{{ errorMsg }}</b-alert>
     <b-row>
       <b-col>
         <h3> Summe: {{ ledgers.map(x => x.amount).reduce((accumulator, currentValue) => accumulator + currentValue).toLocaleString('de-DE', { style: 'currency', currency: 'EUR' }) }} </h3>
@@ -20,7 +20,7 @@
               <td>{{ ledger.purpose }}</td>
               <td>{{ ledger.amount.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' }) }}</td>
               <td class="text-right">
-                <a href="#" @click.prevent="denkstePuppe(user)">STORNO KASSE 3</a>
+                <a href="#" @click.prevent="refund(ledger)">STORNO KASSE 3</a>
               </td>
             </tr>
           </tbody>
@@ -40,11 +40,12 @@
 </template>
 
 <script>
-import {mapMutations, mapState} from 'vuex'
+import {mapActions, mapMutations, mapState} from 'vuex'
 
 export default {
   data () {
     return {
+      errorMsg: null,
       loading: false,
       model: {}
     }
@@ -53,12 +54,19 @@ export default {
     if (!this.currentUser.id) {
       this.$router.push('/')
     }
+    this.$store.state.currentViewTitle = 'Mein Konto'
   },
   computed: {
-    ...mapState(['users', 'cart', 'loginState', 'currentUser', 'ledgers'])
+    ...mapState(['users', 'cart', 'loginState', 'currentUser', 'ledgers']),
+    ...mapActions(['refreshLedgers'])
   },
   methods: {
-    ...mapMutations(['chargeBalance'])
+    ...mapMutations(['chargeBalance']),
+    refund (ledger) {
+      var audio = new Audio('/static/storno.mp3')
+      audio.play()
+      this.errorMsg = 'Oh no - Wir erlauben kein Storno...'
+    }
   }
 }
 </script>

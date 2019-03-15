@@ -60,6 +60,7 @@ export default {
       }.bind(this))
     }
     this.timer = setTimeout(this.backgroundLogin.bind(this), 1000)
+    this.$store.state.currentViewTitle = 'fridgy - serving customers since 2019'
     console.log('INIT')
   },
   computed: {
@@ -74,71 +75,25 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
-
-body{
-  background-color: #4096ee; 
-  @include filter-gradient(#4096ee, #4096ee, vertical);
-  @include background-image(linear-gradient(top, #4096ee 0%,#4096ee 100%));
-  color: #eee;
-}
-
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #35495E;
-}
+<style scoped>
 
 .total{
   position: absolute;
-  bottom: 0px;
-  right: 0px;
-  left: 0px;
-  padding: 30px;
-  padding-top: 15px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  padding: 15px 30px 30px;
   font-size: 36px;
   font-weight: lighter;
-}
-
-button{
-  margin-top: 30px;
-  background: rgba(0, 0, 0, 0.2);
-  background: #3FCA8C;
-  font-size: 22px;
-  font-weight: lighter;
-  padding: 8px 15px ;
-  border: none;
-  border-radius: 5px;
-  margin: auto;
-  color: white;
-  cursor: pointer;
-  box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
-}
-
-button:active{
-  opacity: 0.6;
-  transform: scale(0.95);
 }
 
 .cart_sidebar{
   background: rgba(0,0,0,0.1); 
   /* background: #1A79E3; */
   position: fixed; 
-  right: 0px; 
+  right: 0;
   top: 55px; 
-  bottom: 0px; 
+  bottom: 0;
   width: 350px; 
   padding: 30px;
   box-shadow: inset 8px 0 8px -8px rgba(0,0,0,0.2);

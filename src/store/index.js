@@ -6,6 +6,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    currentViewTitle: 'Login',
     currentUser: false,
     loginState: 'loggedOut',
     products: [{name: 'Unloaded'}],
@@ -45,9 +46,9 @@ export default new Vuex.Store({
       var audio = new Audio('/static/checkout.mp3')
       audio.play()
       Promise.all(this.state.cart.map(async (product) => api.createLedger({userId: this.state.currentUser.id, productId: product.id, amount: product.price * -1, purpose: 'Einkauf: ' + product.name, date: Date.now()}))).then((e) => {
-        this.state.loginState = 'loggingOut'
+        this.state.loginState = 'loggingOut' // Triggers Logout.vue
         if (this.state.cart.length === 0) {
-          this.commit('logout')
+          this.dispatch('logoutAction')
         }
       })
     },
@@ -82,6 +83,10 @@ export default new Vuex.Store({
     async refreshLedgers () {
       var ledgers = await api.getLedgers(this.state.currentUser.id)
       this.commit('setLedgers', {ledgers: ledgers})
+    },
+    logoutAction () {
+      Vue.router.push('/')
+      this.commit('logout')
     }
   }
 })

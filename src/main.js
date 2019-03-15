@@ -26,3 +26,4 @@ new Vue({
     this.$store.commit('initialiseStore')
   }
 })
+Vue.router = router

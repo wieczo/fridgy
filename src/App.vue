@@ -1,13 +1,15 @@
-<template>
+<template xmlns="http://www.w3.org/1999/html">
   <div id="app">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <header>
       <span class="time">{{currentTime}}</span>
       <span class="user" v-if="currentUser">
-        <a v-on:click="logout()" class="logout">Logout</a>
-        <i class="fas fa-user"></i> <router-link to="/me"><a style="color:#fff">{{currentUser.name}}</a></router-link>
+        <a v-on:click="logout()" class="logout" href="javascript:void(0)">Logout</a>
+        <i class="fas fa-user"></i> <router-link to="/me"><a style="color:#fff">{{currentUser.name}}
+        <small>({{ ledgers.map(x => x.amount).reduce((accumulator, currentValue) => accumulator + currentValue).toLocaleString('de-DE', { style: 'currency', currency: 'EUR' }) }})</small>
+        </a></router-link>
       </span>
-      <span><i class='fas fa-beer'></i> Fridge-Checkout</span>      
+      <span><router-link to="/"><a style="color:#fff"><i class='fas fa-beer'></i> {{currentViewTitle}}</a></router-link></span>
     </header>
     <main>
       <router-view></router-view>
@@ -16,33 +18,74 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+  import {mapActions, mapState} from 'vuex'
 
-export default {
-  name: 'app',
-  created () {
-    setInterval((e) => {
-      this.currentTime = new Date().toLocaleTimeString('de-DE', {hour: '2-digit', minute: '2-digit'})
-    }, 1000)
-  },
-  props: {
-    currentTime: '00:00'
-  },
-  computed: {
-    ...mapState(['currentUser'])
-  },
-  methods: {
-    logout () {
-      this.$store.commit('logout')
-      this.$router.push('/')
+  export default {
+    name: 'app',
+    created () {
+      setInterval((e) => {
+        this.currentTime = new Date().toLocaleTimeString('de-DE', {hour: '2-digit', minute: '2-digit'})
+      }, 1000)
+    },
+    computed: {
+      ...mapState(['currentUser', 'currentViewTitle', 'ledgers']),
+      ...mapActions(['logout'])
     }
   }
-}
 </script>
 
 <style>
-body {
-  margin: 0;
+body{
+  background-color: #4096ee;
+@include filter-gradient(#4096ee, #4096ee, vertical);
+@include background-image(linear-gradient(top, #4096ee 0%,#4096ee 100%));
+  color: #eee;
+}
+
+h1, h2 {
+  font-weight: normal;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+a {
+  color: #35495E;
+}
+
+button{
+  background: rgba(0, 0, 0, 0.2);
+  background: #3FCA8C;
+  font-size: 22px;
+  font-weight: lighter;
+  padding: 8px 15px ;
+  border: none;
+  border-radius: 5px;
+  margin: 2px auto;
+  color: white;
+  cursor: pointer;
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+
+button:active{
+  opacity: 0.6;
+  transform: scale(0.95);
+}
+
+.card {
+  background-color:#1a79e3;
+  color:white;
+}
+
+.table , .table a{
+  color:#fff;
 }
 
 .time{
@@ -81,11 +124,11 @@ header {
   padding: 0 16px 0 24px;
   background-color: #1a79e3;
   color: #ffffff;
-  box-shadow: 0px 0px 3px rgba(0,0,0,0.2);
+  box-shadow: 0 0 3px rgba(0,0,0,0.2);
 }
 
 header span {
-  display: block;
+  display: inline-block;
   position: relative;
   font-size: 20px;
   line-height: 1;

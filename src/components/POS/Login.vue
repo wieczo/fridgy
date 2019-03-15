@@ -1,6 +1,6 @@
 <template>
   <div>
-    <center>     
+    <div style="text-align: center;">
       <div><i class='fas fa-user'></i></div>
       <h2>Anmelden</h2>
       <br>Halte Deinen RFID Chip an das Lesegerät oder wähle manuelle Anmeldung
@@ -10,13 +10,13 @@
         <button v-on:click="loginCallback({id: 1, name: 'Gast'})" href="#" >Gast</button>
       </div>
 
-      <div style="position: absolute; left: 20px; right: 0px; height: 130px; bottom: 0px; ">
+      <div style="position: absolute; left: 20px; right: 0; height: 130px; bottom: 0; ">
         <div>
           <UserSelect v-for="user in users" v-bind:key="user.id" v-bind:user="user" v-bind:click="loginCallback" />
         </div>
       </div>
 
-    </center>
+    </div>
   </div>
 </template>
 
@@ -44,7 +44,7 @@ export default {
     font-size: 60px;
     margin-top: 50px;
     margin-bottom: 30px;
-    background: rgb(0,0,0, 0.2);
+    background: rgba(0,0,0,0.2);
     color: white;
     border-radius: 999px;
     padding: 30px 35px;
