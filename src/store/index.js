@@ -42,22 +42,21 @@ export default new Vuex.Store({
       this.state.cart.splice(payload.idx, 1)
     },
     checkoutCart () {
-      for (var i = 0; i < this.state.cart.length; i++) {
-        var product = this.state.cart[i]
-        api.createLedger({userId: this.state.currentUser.id, productId: product.id, amount: product.price * -1, purpose: 'Einkauf: ' + product.name, date: Date.now()})
-      }
-
       var audio = new Audio('/static/checkout.mp3')
       audio.play()
-
-      this.state.loginState = 'loggingOut'
-      if (this.state.cart.length === 0) {
-        this.commit('logout')
-      }
+      Promise.all(this.state.cart.map(async (product) => api.createLedger({userId: this.state.currentUser.id, productId: product.id, amount: product.price * -1, purpose: 'Einkauf: ' + product.name, date: Date.now()}))).then((e) => {
+        this.state.loginState = 'loggingOut'
+        if (this.state.cart.length === 0) {
+          this.commit('logout')
+        }
+      })
     },
     chargeBalance (context, payload) {
-      api.createLedger({userId: this.state.currentUser.id, amount: payload.amount * 1, purpose: 'Einzahlung: ' + payload.amount.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' }), date: Date.now()})
-      this.dispatch('refreshLedgers')
+      var audio = new Audio('/static/charge.mp3')
+      audio.play()
+      api.createLedger({userId: this.state.currentUser.id, amount: payload.amount * 1, purpose: 'Einzahlung: ' + payload.amount.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' }), date: Date.now()}).then((e) => {
+        this.dispatch('refreshLedgers')
+      })
     },
     setLedgers (state, payload) {
       this.state.ledgers = payload.ledgers
