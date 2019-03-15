@@ -4,7 +4,11 @@
     <b-alert :show="errorMsg" variant="danger" dismissible>{{ errorMsg }}</b-alert>
     <b-row>
       <b-col>
-        <h3> Summe: {{ ledgers.map(x => x.amount).reduce((accumulator, currentValue) => accumulator + currentValue).toLocaleString('de-DE', { style: 'currency', currency: 'EUR' }) }} </h3>
+          <b-jumbotron lead="Dein Kontostand">
+              <template slot="header">
+                  {{ ledgers.map(x => x.amount).reduce((accumulator, currentValue) => accumulator + currentValue).toLocaleString('de-DE', { style: 'currency', currency: 'EUR' }) }}
+              </template>
+          </b-jumbotron>
         <table class="table table-striped">
           <thead>
             <tr>

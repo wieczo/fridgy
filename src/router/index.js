@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Main from '@/components/POS/Main'
 import Products from '@/components/Products'
 import Users from '@/components/Users'
-import Me from '@/components/Me'
+import Me from '@/components/POS/Me'
 
 Vue.use(Router)
 

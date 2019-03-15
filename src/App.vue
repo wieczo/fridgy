@@ -4,7 +4,7 @@
     <header>
       <span class="time">{{currentTime}}</span>
       <span class="user" v-if="currentUser">
-        <a v-on:click="logout()" class="logout" href="javascript:void(0)">Logout</a>
+        <a v-on:click="logoutAction()" class="logout" href="javascript:void(0)">Logout</a>
         <i class="fas fa-user"></i> <router-link to="/me"><a style="color:#fff">{{currentUser.name}}
         <small>({{ ledgers.map(x => x.amount).reduce((accumulator, currentValue) => accumulator + currentValue).toLocaleString('de-DE', { style: 'currency', currency: 'EUR' }) }})</small>
         </a></router-link>
@@ -29,7 +29,7 @@
     },
     computed: {
       ...mapState(['currentUser', 'currentViewTitle', 'ledgers']),
-      ...mapActions(['logout'])
+      ...mapActions(['logoutAction'])
     }
   }
 </script>
@@ -86,6 +86,11 @@ button:active{
 
 .table , .table a{
   color:#fff;
+}
+
+.jumbotron {
+    background: #1979e3;
+    padding:2rem 1rem;
 }
 
 .time{
