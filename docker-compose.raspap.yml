@@ -22,7 +22,9 @@ services:
       context: .
       dockerfile: ./docker/arm/node-backend/Dockerfile
     ports:
-     - "8081:8081"
+      - "8081:8081"
+    volumes:
+      - fridgydatabase:/database
     networks:
       - backend
 
@@ -34,6 +36,9 @@ services:
     privileged: true
     networks:
       - backend
+
+volumes:
+  fridgydatabase:
 
 networks:
   backend:

@@ -7,6 +7,7 @@ RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 
 RUN apt-get update && apt-get -y install sqlite3 libsqlite3-dev
+RUN npm install -g node-pre-gyp node-gyp
 
 COPY package.json ./
 COPY package-lock.json ./

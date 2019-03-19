@@ -29,9 +29,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  i{
-    font-size: 90px; 
-    color: #fff;
-    margin-bottom: 40px;
-  }
+i{
+  font-size: 90px; 
+  color: #fff;
+  margin-bottom: 40px;
+}
 </style>

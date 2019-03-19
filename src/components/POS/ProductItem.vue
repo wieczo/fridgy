@@ -27,29 +27,28 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .productItem{
-    padding: 15px;
-    background: #FFF;
-    color: #555;
-    box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
-    margin: 10px 0px;
-    cursor: pointer;
-    position: relative;
-    border-radius: 3px;
-  }
+.productItem{
+  padding: 15px;
+  background: #FFF;
+  color: #555;
+  box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
+  margin: 10px 0px;
+  cursor: pointer;
+  position: relative;
+  border-radius: 3px;
+}
 
-  .productItem:active{
-    transform: scale(0.95);
-    opacity: 0.7;
-  }
+.productItem:active{
+  transform: scale(0.95);
+  opacity: 0.7;
+}
 
-  .price{
-    font-size: 20px;
-    font-weight: lighter;
-    float: right;
-    position: absolute; 
-    top: 10px;
-    right: 10px;
-  }
-
+.price{
+  font-size: 20px;
+  font-weight: lighter;
+  float: right;
+  position: absolute; 
+  top: 10px;
+  right: 10px;
+}
 </style>
