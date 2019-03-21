@@ -37,8 +37,8 @@
 <style>
 body{
   background-color: #4096ee;
-@include filter-gradient(#4096ee, #4096ee, vertical);
-@include background-image(linear-gradient(top, #4096ee 0%,#4096ee 100%));
+  @include filter-gradient(#4096ee, #4096ee, vertical);
+  @include background-image(linear-gradient(top, #4096ee 0%,#4096ee 100%));
   color: #eee;
 }
 
@@ -89,8 +89,8 @@ button:active{
 }
 
 .jumbotron {
-    background: #1979e3;
-    padding:2rem 1rem;
+  background: #1979e3;
+  padding:2rem 1rem;
 }
 
 .time{

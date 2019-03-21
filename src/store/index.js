@@ -9,8 +9,12 @@ export default new Vuex.Store({
     currentViewTitle: 'Login',
     currentUser: false,
     loginState: 'loggedOut',
-    products: [{name: 'Unloaded'}],
-    ledgers: [{test: 'tt'}],
+    products: [{
+      name: 'Unloaded'
+    }],
+    ledgers: [{
+      test: 'tt'
+    }],
     users: [],
     cart: []
   },
@@ -45,7 +49,13 @@ export default new Vuex.Store({
     checkoutCart () {
       var audio = new Audio('/static/checkout.mp3')
       audio.play()
-      Promise.all(this.state.cart.map(async (product) => api.createLedger({userId: this.state.currentUser.id, productId: product.id, amount: product.price * -1, purpose: 'Einkauf: ' + product.name, date: Date.now()}))).then((e) => {
+      Promise.all(this.state.cart.map(async (product) => api.createLedger({
+        userId: this.state.currentUser.id,
+        productId: product.id,
+        amount: product.price * -1,
+        purpose: 'Einkauf: ' + product.name,
+        date: Date.now()
+      }))).then((e) => {
         this.state.loginState = 'loggingOut' // Triggers Logout.vue
         if (this.state.cart.length === 0) {
           this.dispatch('logoutAction')
@@ -55,9 +65,18 @@ export default new Vuex.Store({
     chargeBalance (context, payload) {
       var audio = new Audio('/static/charge.mp3')
       audio.play()
-      api.createLedger({userId: this.state.currentUser.id, amount: payload.amount * 1, purpose: 'Einzahlung: ' + payload.amount.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' }), date: Date.now()}).then((e) => {
-        this.dispatch('refreshLedgers')
-      })
+      api.createLedger({
+        userId: this.state.currentUser.id,
+        amount: payload.amount * 1,
+        purpose: 'Einzahlung: ' + payload.amount.toLocaleString('de-DE', {
+          style: 'currency',
+          currency: 'EUR'
+        }),
+        date: Date.now()
+      }).then(
+        (e) => {
+          this.dispatch('refreshLedgers')
+        })
     },
     setLedgers (state, payload) {
       this.state.ledgers = payload.ledgers
@@ -82,7 +101,9 @@ export default new Vuex.Store({
   actions: {
     async refreshLedgers () {
       var ledgers = await api.getLedgers(this.state.currentUser.id)
-      this.commit('setLedgers', {ledgers: ledgers})
+      this.commit('setLedgers', {
+        ledgers: ledgers
+      })
     },
     logoutAction () {
       Vue.router.push('/')

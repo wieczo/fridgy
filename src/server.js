@@ -16,9 +16,9 @@ var corsOptions = {
 
 app.use(cors(corsOptions))
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*")
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
   next()
 })
 
@@ -27,7 +27,7 @@ app.use(bodyParser.json())
 // For ease of this tutorial, we are going to use SQLite to limit dependencies
 let database = new Sequelize({
   dialect: 'sqlite',
-  storage: './test.sqlite'
+  storage: './database/fridgy.sqlite'
 })
 
 // Define our User model
@@ -70,7 +70,7 @@ epilogue.initialize({
 
 app.get('/user', function (req, res) {
   User.findOne({where: {id: currentUser}})
-    .then(function(user) {
+    .then(function (user) {
       if (user) {
         res.json(user)
         currentUser = 0
@@ -82,12 +82,12 @@ app.get('/user', function (req, res) {
 
 app.post('/user/:rfid', function (req, res) {
   User.findOne({where: {rfid_key: req.params.rfid}})
-    .then(function(user) {
+    .then(function (user) {
       if (user) {
         currentUser = user.id
       }
     })
-  res.send("currentUser is: " + currentUser)
+  res.send('currentUser is: ' + currentUser)
 })
 
 app.delete('/user', function (req, res) {
