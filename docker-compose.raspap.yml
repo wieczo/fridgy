@@ -31,6 +31,7 @@ services:
       context: .
       dockerfile: ./docker/arm/rfid-reader/Dockerfile
     read_only: true
+    restart: unless-stopped
     privileged: true
     networks:
       - backend

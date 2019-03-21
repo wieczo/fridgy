@@ -29,6 +29,7 @@ services:
 
   # rfid_reader:
   #   build: https://github.com/simonneutert/MFRC522-python.git
+  #   restart: unless-stopped
   #   networks:
   #     - backend
 
