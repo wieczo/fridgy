@@ -14,6 +14,12 @@ services:
       - api_backend:api_backend
       - rfid_reader:rfid_reader
     privileged: true
+    logging:
+      # limit logs retained on host to 25MB
+      driver: "json-file"
+      options:
+        max-size: "500k"
+        max-file: "50"
     networks:
       - backend
 
@@ -25,6 +31,12 @@ services:
       - "8081:8081"
     volumes:
       - fridgydatabase:/database
+    logging:
+      # limit logs retained on host to 25MB
+      driver: "json-file"
+      options:
+        max-size: "500k"
+        max-file: "50"
     networks:
       - backend
 
@@ -35,6 +47,12 @@ services:
     read_only: true
     restart: unless-stopped
     privileged: true
+    logging:
+      # limit logs retained on host to 25MB
+      driver: "json-file"
+      options:
+        max-size: "500k"
+        max-file: "50"
     networks:
       - backend
 
