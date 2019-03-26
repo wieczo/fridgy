@@ -6,9 +6,7 @@ ENV APP_HOME /fridgy-backend
 RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 
-RUN mkdir database
-
-RUN apt-get update && apt-get -y install sqlite3 libsqlite3-dev
+RUN apt-get update && apt-get -y install sqlite3
 RUN npm install -g node-pre-gyp node-gyp
 
 COPY package.json ./

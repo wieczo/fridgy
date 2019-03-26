@@ -4,11 +4,11 @@
     <b-alert :show="errorMsg" variant="danger" dismissible>{{ errorMsg }}</b-alert>
     <b-row>
       <b-col>
-          <b-jumbotron lead="Dein Kontostand">
-              <template slot="header">
-                  {{ ledgers.map(x => x.amount).reduce((accumulator, currentValue) => accumulator + currentValue).toLocaleString('de-DE', { style: 'currency', currency: 'EUR' }) }}
-              </template>
-          </b-jumbotron>
+        <b-jumbotron lead="Dein Kontostand">
+          <template slot="header">
+            {{ ledgerDebt(ledgers) }}
+          </template>
+        </b-jumbotron>
         <table class="table table-striped">
           <thead>
             <tr>
@@ -51,7 +51,14 @@ export default {
     return {
       errorMsg: null,
       loading: false,
-      model: {}
+      model: {},
+      ledgerDebt (ledgers) {
+        if (ledgers && ledgers.length > 0) {
+          return ledgers.map(x => x.amount).reduce((accumulator, currentValue) => accumulator + currentValue).toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })
+        } else {
+          return (0.0).toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })
+        }
+      }
     }
   },
   async created () {

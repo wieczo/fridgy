@@ -6,7 +6,9 @@
       <span class="user" v-if="currentUser">
         <a v-on:click="logoutAction()" class="logout" href="javascript:void(0)">Logout</a>
         <i class="fas fa-user"></i> <router-link to="/me"><a style="color:#fff">{{currentUser.name}}
-        <small>({{ ledgers.map(x => x.amount).reduce((accumulator, currentValue) => accumulator + currentValue).toLocaleString('de-DE', { style: 'currency', currency: 'EUR' }) }})</small>
+        <small>
+          ({{ ledgerDebt(ledgers) }})
+          </small>
         </a></router-link>
       </span>
       <span><router-link to="/"><a style="color:#fff"><i class='fas fa-beer'></i> {{currentViewTitle}}</a></router-link></span>
@@ -22,7 +24,19 @@
 
   export default {
     name: 'app',
+    data () {
+      return {
+        ledgerDebt (ledgers) {
+          if (ledgers && ledgers.length > 0) {
+            return ledgers.map(x => x.amount).reduce((accumulator, currentValue) => accumulator + currentValue).toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })
+          } else {
+            return (0.0).toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })
+          }
+        }
+      }
+    },
     created () {
+      this.currentTime = ''
       setInterval((e) => {
         this.currentTime = new Date().toLocaleTimeString('de-DE', {hour: '2-digit', minute: '2-digit'})
       }, 1000)
