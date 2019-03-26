@@ -30,7 +30,7 @@ services:
     ports:
       - "8081:8081"
     volumes:
-      - fridgydatabase:/database
+      - fridgydatabase:/fridgy-backend/database
     logging:
       # limit logs retained on host to 25MB
       driver: "json-file"
