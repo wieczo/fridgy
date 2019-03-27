@@ -2,11 +2,11 @@
 
 ![image](https://user-images.githubusercontent.com/2473614/51619035-b610f780-1f2f-11e9-8a0c-d6e1f6e108e7.png)
 
-## Varianten
+## Contributors
 
-## SoundFX
+dedication, sweat and love  
 
-https://freesound.org/people/Timbre/sounds/404028/
+[@seizmo](https://github.com/seizmo) [@JensSchneiderOdacer](https://github.com/JensSchneiderOdacer) [@DanyD](https://github.com/DanyD) [@phroggar](https://github.com/phroggar)
 
 ### Cloud
 1. POS Konsole       (Fridge-Bouncer)
