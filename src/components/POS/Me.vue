@@ -32,12 +32,29 @@
       </b-col>
       <b-col lg="3">
         <b-card :title="'Konto aufladen'" style="text-align:center;">
-          <span>Zahlung per Paypal an Simon oder ins Sparschwein, dann Button drücken:</span>
-          <button v-on:click="chargeBalance({amount: 5})">5 EUR</button><br>
-          <button v-on:click="chargeBalance({amount: 10})">10 EUR</button><br>
-          <button v-on:click="chargeBalance({amount: 15})">15 EUR</button><br>
-          <button v-on:click="chargeBalance({amount: 20})">20 EUR</button>
+          <p>
+            <span>Zahlung per Paypal an Simon oder ihm bar bezahlen, dann Button drücken:</span>
+          </p>
+          <p>
+            <button v-on:click="chargeBalance({amount: 5})">5 EUR</button>
+          </p>
+          <p>
+            <button v-on:click="chargeBalance({amount: 10})">10 EUR</button>
+          </p>
+          <p>
+            <button v-on:click="chargeBalance({amount: 15})">15 EUR</button>
+          </p>
+          <p>
+            <button v-on:click="chargeBalance({amount: 20})">20 EUR</button>
+          </p>
         </b-card>
+
+        <br>
+
+        <b-card :title="Paypal" style="text-align:center;">
+          <img src="/static/img/paypal-simon.gif" />
+        </b-card>
+
       </b-col>
     </b-row>
   </div>
