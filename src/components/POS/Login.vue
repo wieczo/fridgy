@@ -10,7 +10,7 @@
         <button v-on:click="loginCallback({id: 1, name: 'Gast'})" href="#" >Gast</button>
       </div>
 
-      <div style="position: absolute; left: 20px; right: 0; height: 130px; bottom: 0; ">
+      <div style="position: absolute; left: 20px; right: 0; bottom: 0; ">
         <div>
           <UserSelect v-for="user in users" v-bind:key="user.id" v-bind:user="user" v-bind:click="loginCallback" />
         </div>
