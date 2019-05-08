@@ -3,7 +3,7 @@
 <div>
   <div class="backdrop" style="position: absolute; background: #3FCA8C; top: 0px; left: 0px; right: 0px; bottom: 0px;">
   <center style="margin-top: 180px; z-index: 2;">
-       <div><i class='fas fa-check-circle'></i></div>
+       <div><v-icon name='check-circle'></v-icon></div>
        <h2>Vielen Dank für Deinen <u>{{cartSum.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })}}</u> Einkauf</h2>
   </center>
   </div>

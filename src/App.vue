@@ -1,17 +1,16 @@
 <template xmlns="http://www.w3.org/1999/html">
   <div id="app">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <header>
       <span class="time">{{currentTime}}</span>
       <span class="user" v-if="currentUser">
         <a v-on:click="logoutAction()" class="logout" href="javascript:void(0)">Logout</a>
-        <i class="fas fa-user"></i> <router-link to="/me"><a style="color:#fff">{{currentUser.name}}
+        <v-icon name="user"></v-icon> <router-link to="/me"><a style="color:#fff">{{currentUser.name}}
         <small>
           ({{ ledgerDebt(ledgers) }})
           </small>
         </a></router-link>
       </span>
-      <span><router-link to="/"><a style="color:#fff"><i class='fas fa-beer'></i> {{currentViewTitle}}</a></router-link></span>
+      <span><router-link to="/"><a style="color:#fff"><v-icon name='beer'></v-icon> {{currentViewTitle}}</a></router-link></span>
     </header>
     <main>
       <router-view></router-view>
@@ -120,7 +119,7 @@ button:active{
 }
 
 .user a.logout{
-  background: rgb(243, 82, 82); 
+  background: rgb(243, 82, 82);
   border-radius: 3px;
   padding: 5px 8px;
   color: white;

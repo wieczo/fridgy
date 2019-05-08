@@ -10,7 +10,7 @@
         </div>
       </div>
       <div class="cart_sidebar">  
-        <h3><i class="fas fa-shopping-cart"></i> Warenkorb ({{cartCount}})</h3>
+        <h3><v-icon name="shopping-cart"></v-icon> Warenkorb ({{cartCount}})</h3>
         <div class="cart_items">
           <div v-if='cartCount==0'>
             &laquo; Bitte wähle links die gewünschten Produkte aus

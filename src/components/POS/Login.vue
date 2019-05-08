@@ -1,7 +1,7 @@
 <template>
   <div>
     <div style="text-align: center;">
-      <div><i class='fas fa-user'></i></div>
+      <div><v-icon name='user' scale="3"></v-icon></div>
       <h2>Anmelden</h2>
       <br>Halte Deinen RFID Chip an das Lesegerät oder wähle manuelle Anmeldung
 

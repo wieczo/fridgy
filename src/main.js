@@ -8,12 +8,16 @@ import router from './router'
 import BootstrapVue from 'bootstrap-vue'
 import store from './store'
 
+import 'vue-awesome/icons'
+import Icon from 'vue-awesome/components/Icon'
+
 store.subscribe((mutation, state) => {
   localStorage.setItem('store', JSON.stringify(state))
 })
 
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false
+Vue.component('v-icon', Icon)
 
 /* eslint-disable no-new */
 new Vue({
