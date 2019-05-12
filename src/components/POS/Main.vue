@@ -5,7 +5,7 @@
     <div v-if="loginState=='loggedIn'">
       <div style="margin-right: 330px;">
         <div style="padding: 0px 60px 0px 30px;">
-          <div v-if="ledgerDebtF(ledgers) >= -3.0">
+          <div v-if="ledgerDebtValue(ledgers) >= -3.0">
             <h3>Produkte</h3>
             <ProductList v-bind:items='products' v-bind:onProductClick='addToCart' />
           </div>
@@ -27,7 +27,7 @@
           </div>
             <ProductList v-bind:items='cart' v-bind:onProductClick='removeFromCart' compact="true" />
         </div>
-        <div class="total" v-if="ledgerDebtF(ledgers) >= -3.0">
+        <div class="total" v-if="ledgerDebtValue(ledgers) >= -3.0">
           <button v-on:click='checkoutCart()'>Checkout</button>
           <div style="float: right;">{{cartSum.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })}}</div>
         </div>
@@ -48,7 +48,7 @@ export default {
   data () {
     return {
       state: 'loggedOut',
-      ledgerDebtF (ledgers) {
+      ledgerDebtValue (ledgers) {
         if (ledgers && ledgers.length > 0) {
           return ledgers.map(x => x.amount).reduce((accumulator, currentValue) => accumulator + currentValue)
         } else {
