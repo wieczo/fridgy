@@ -1,6 +1,7 @@
 version: '2.2'
 services:
   web:
+    restart: unless-stopped
     build:
       context: .
       dockerfile: ./docker/arm/node-frontend/Dockerfile
@@ -24,6 +25,7 @@ services:
       - backend
 
   api_backend:
+    restart: unless-stopped
     build: 
       context: .
       dockerfile: ./docker/arm/node-backend/Dockerfile
