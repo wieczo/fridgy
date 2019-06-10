@@ -60,23 +60,26 @@ export default {
   created () {
     this.$store.commit('refreshProducts')
     this.$store.commit('refreshUsers')
-    this.backgroundLogin = function () {
-      // GET http://localhost:8081/user
-      console.log('Checking RFID...')
-      api.getCurrenttUser().then(function (currentUser) {
-        console.log('-> Received RFID...')
-        console.log(this.currentUser)
-        // && this.$store.currentUser && (currentUser.id !== this.$store.currentUser.id)
-        if (this.currentUser === false || (this.currentUser && currentUser && this.currentUser.id !== currentUser.id)) {
-          console.log('RFIDLogin')
-          this.$store.commit('login', currentUser)
-        }
-        this.timer = setTimeout(this.backgroundLogin.bind(this), 1000)
-      }.bind(this), function () {
-        this.timer = setTimeout(this.backgroundLogin.bind(this), 1000)
-      }.bind(this))
+    // rfid reader and autologin check is disabled by default
+    if (process.env.VUE_APP_RFID) {
+      this.backgroundLogin = function () {
+        // GET http://localhost:8081/user
+        console.log('Checking RFID...')
+        api.getCurrenttUser().then(function (currentUser) {
+          console.log('-> Received RFID...')
+          console.log(this.currentUser)
+          // && this.$store.currentUser && (currentUser.id !== this.$store.currentUser.id)
+          if (this.currentUser === false || (this.currentUser && currentUser && this.currentUser.id !== currentUser.id)) {
+            console.log('RFIDLogin')
+            this.$store.commit('login', currentUser)
+          }
+          this.timer = setTimeout(this.backgroundLogin.bind(this), 1000)
+        }.bind(this), function () {
+          this.timer = setTimeout(this.backgroundLogin.bind(this), 1000)
+        }.bind(this))
+      }
+      this.timer = setTimeout(this.backgroundLogin.bind(this), 1000)
     }
-    this.timer = setTimeout(this.backgroundLogin.bind(this), 1000)
     this.$store.state.currentViewTitle = 'fridgy - serving customers since 2019'
     console.log('INIT')
   },
