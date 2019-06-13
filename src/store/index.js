@@ -32,18 +32,18 @@ export default new Vuex.Store({
       state.ledgers = []
       state.currentUser = user
     },
-    logout () {
+    LOGOUT () {
       // api.deleteCurrenttUser()
       this.state.loginState = 'loggedOut'
       this.state.currentUser = false
       this.state.cart = []
       this.state.ledgers = []
     },
-    addToCart (context, payload) {
-      this.state.cart.push(payload.product)
+    ADD_TO_CART (state, product) {
+      state.cart.push(product)
     },
-    removeFromCart (context, payload) {
-      this.state.cart.splice(payload.idx, 1)
+    REMOVE_FROM_CART (state, idx) {
+      state.cart.splice(idx, 1)
     },
     checkoutCart () {
       var audio = new Audio('/static/checkout.mp3')
@@ -77,14 +77,8 @@ export default new Vuex.Store({
           this.dispatch('refreshLedgers')
         })
     },
-    setLedgers (state, payload) {
-      this.state.ledgers = payload.ledgers
-    },
-    async refreshProducts () {
-      this.state.products = await api.getProducts()
-    },
-    async refreshUsers () {
-      this.state.users = await api.getUsers()
+    SET_LEDGERS (state, { ledgers }) {
+      state.ledgers = ledgers
     }
   },
   getters: {
@@ -98,19 +92,31 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    async refreshLedgers () {
+    addToCart (context, { product }) {
+      context.commit('ADD_TO_CART', product)
+    },
+    removeFromCart (context, { idx }) {
+      context.commit('REMOVE_FROM_CART', idx)
+    },
+    async refreshLedgers (context) {
       var ledgers = await api.getLedgers(this.state.currentUser.id)
-      this.commit('setLedgers', {
-        ledgers: ledgers
+      context.commit('SET_LEDGERS', {
+        ledgers
       })
     },
+    async refreshProducts ({ state }) {
+      state.products = await api.getProducts()
+    },
+    async refreshUsers ({ state }) {
+      state.users = await api.getUsers()
+    },
     login (context, user) {
-      this.commit('LOGIN', user)
-      this.dispatch('refreshLedgers')
+      context.commit('LOGIN', user)
+      context.dispatch('refreshLedgers')
     },
     logoutAction () {
       Vue.router.push('/')
-      this.commit('logout')
+      this.commit('LOGOUT')
     }
   }
 })

@@ -58,8 +58,8 @@ export default {
     }
   },
   created () {
-    this.$store.commit('refreshProducts')
-    this.$store.commit('refreshUsers')
+    this.refreshProducts()
+    this.refreshUsers()
     // rfid reader and autologin check is disabled by default
     if (process.env.VUE_APP_RFID) {
       this.backgroundLogin = function () {
@@ -89,8 +89,8 @@ export default {
   },
   components: { Login, Logout, ProductList },
   methods: {
-    ...mapMutations(['addToCart', 'removeFromCart', 'checkoutCart']),
-    ...mapActions(['login'])
+    ...mapMutations(['checkoutCart']),
+    ...mapActions(['removeFromCart', 'login', 'addToCart', 'refreshProducts', 'refreshUsers'])
   }
 }
 </script>
