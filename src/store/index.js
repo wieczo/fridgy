@@ -19,19 +19,18 @@ export default new Vuex.Store({
     cart: []
   },
   mutations: {
-    initialiseStore (state) {
+    INITIALISE_STORE (state) {
       if (localStorage.getItem('store')) {
         this.replaceState(
           Object.assign(state, JSON.parse(localStorage.getItem('store')))
         )
       }
     },
-    login (context, user) {
-      this.state.loginState = 'loggedIn'
-      this.state.cart = []
-      this.state.ledgers = []
-      this.state.currentUser = user
-      this.dispatch('refreshLedgers')
+    LOGIN (state, user) {
+      state.loginState = 'loggedIn'
+      state.cart = []
+      state.ledgers = []
+      state.currentUser = user
     },
     logout () {
       // api.deleteCurrenttUser()
@@ -104,6 +103,10 @@ export default new Vuex.Store({
       this.commit('setLedgers', {
         ledgers: ledgers
       })
+    },
+    login (context, user) {
+      this.commit('LOGIN', user)
+      this.dispatch('refreshLedgers')
     },
     logoutAction () {
       Vue.router.push('/')
