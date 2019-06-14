@@ -10,6 +10,8 @@ selenium-debug.log
 *.sqlite
 /fridgy-database/
 
+package-lock.json
+
 # Editor directories and files
 .idea
 *.suo
