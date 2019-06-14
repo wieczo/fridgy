@@ -50,6 +50,10 @@ https://developer.okta.com/blog/2018/02/15/build-crud-app-vuejs-node
 - run `$ node src/server.js` first in one winows
 - run `$ npm run dev` in the second one
 
+## Hacker's Choice Award
+
+`$ vue ui`
+
 ## Build Setup
 
 ``` bash
