@@ -41,7 +41,7 @@ import Login from '@/components/POS/Login'
 import Logout from '@/components/POS/Logout'
 import ProductList from '@/components/POS/ProductList'
 import api from '@/api'
-import { mapState, mapMutations, mapGetters, mapActions } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Main',
@@ -89,8 +89,7 @@ export default {
   },
   components: { Login, Logout, ProductList },
   methods: {
-    ...mapMutations(['checkoutCart']),
-    ...mapActions(['removeFromCart', 'login', 'addToCart', 'refreshProducts', 'refreshUsers'])
+    ...mapActions(['removeFromCart', 'login', 'addToCart', 'refreshProducts', 'refreshUsers', 'checkoutCart'])
   }
 }
 </script>

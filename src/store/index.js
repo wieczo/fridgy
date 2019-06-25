@@ -45,38 +45,6 @@ export default new Vuex.Store({
     REMOVE_FROM_CART (state, idx) {
       state.cart.splice(idx, 1)
     },
-    checkoutCart () {
-      var audio = new Audio('/static/checkout.mp3')
-      audio.play()
-      Promise.all(this.state.cart.map(async (product) => api.createLedger({
-        userId: this.state.currentUser.id,
-        productId: product.id,
-        amount: product.price * -1,
-        purpose: 'Einkauf: ' + product.name,
-        date: Date.now()
-      }))).then((e) => {
-        this.state.loginState = 'loggingOut' // Triggers Logout.vue
-        if (this.state.cart.length === 0) {
-          this.dispatch('logoutAction')
-        }
-      })
-    },
-    chargeBalance (context, payload) {
-      var audio = new Audio('/static/charge.mp3')
-      audio.play()
-      api.createLedger({
-        userId: this.state.currentUser.id,
-        amount: payload.amount * 1,
-        purpose: 'Einzahlung: ' + payload.amount.toLocaleString('de-DE', {
-          style: 'currency',
-          currency: 'EUR'
-        }),
-        date: Date.now()
-      }).then(
-        (e) => {
-          this.dispatch('refreshLedgers')
-        })
-    },
     SET_LEDGERS (state, { ledgers }) {
       state.ledgers = ledgers
     }
@@ -117,6 +85,39 @@ export default new Vuex.Store({
     logoutAction () {
       Vue.router.push('/')
       this.commit('LOGOUT')
+    },
+    checkoutCart ({ state }) {
+      let audio = new Audio('/static/checkout.mp3')
+      audio.play()
+      Promise.all(state.cart.map(async (product) => api.createLedger({
+        userId: state.currentUser.id,
+        productId: product.id,
+        amount: product.price * -1,
+        purpose: 'Einkauf: ' + product.name,
+        date: Date.now()
+      }))).then((e) => {
+        // Triggers Logout.vue
+        state.loginState = 'loggingOut'
+        if (state.cart.length === 0) {
+          this.dispatch('logoutAction')
+        }
+      })
+    },
+    chargeBalance (context, { amount }) {
+      let audio = new Audio('/static/charge.mp3')
+      audio.play()
+      api.createLedger({
+        userId: context.state.currentUser.id,
+        amount: amount * 1,
+        purpose: 'Einzahlung: ' + amount.toLocaleString('de-DE', {
+          style: 'currency',
+          currency: 'EUR'
+        }),
+        date: Date.now()
+      }).then(
+        (e) => {
+          context.dispatch('refreshLedgers')
+        })
     }
   }
 })
