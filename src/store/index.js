@@ -32,29 +32,28 @@ export default new Vuex.Store({
       state.ledgers = []
       state.currentUser = user
     },
-    LOGOUT () {
-      // api.deleteCurrenttUser()
-      this.state.loginState = 'loggedOut'
-      this.state.currentUser = false
-      this.state.cart = []
-      this.state.ledgers = []
+    LOGOUT (state) {
+      state.loginState = 'loggedOut'
+      state.currentUser = false
+      state.cart = []
+      state.ledgers = []
     },
-    ADD_TO_CART (state, product) {
-      state.cart.push(product)
+    ADD_TO_CART ({ cart }, product) {
+      cart.push(product)
     },
-    REMOVE_FROM_CART (state, idx) {
-      state.cart.splice(idx, 1)
+    REMOVE_FROM_CART ({ cart }, idx) {
+      cart.splice(idx, 1)
     },
     SET_LEDGERS (state, { ledgers }) {
       state.ledgers = ledgers
     }
   },
   getters: {
-    cartCount (state) {
-      return state.cart.length
+    cartCount ({ cart }) {
+      return cart.length
     },
-    cartSum (state) {
-      return state.cart.reduce(function (prev, item) {
+    cartSum ({ cart }) {
+      return cart.reduce(function (prev, item) {
         return prev + item.price
       }, 0)
     }
@@ -67,7 +66,7 @@ export default new Vuex.Store({
       context.commit('REMOVE_FROM_CART', idx)
     },
     async refreshLedgers (context) {
-      var ledgers = await api.getLedgers(this.state.currentUser.id)
+      let ledgers = await api.getLedgers(this.state.currentUser.id)
       context.commit('SET_LEDGERS', {
         ledgers
       })
